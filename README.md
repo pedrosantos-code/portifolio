@@ -13,6 +13,7 @@ Bash
 pip install streamlit pandas Pillow plotly
 
 Dica de mestre: Se você encontrar erros de permissão ou "comando não encontrado", tente usar:
+
 python -m pip install streamlit pandas Pillow plotly
 
 📂 Passo 2: Organização do Projeto
