@@ -27,6 +27,7 @@
           <span></span>
         </button>
         <nav class="navigation" id="navigation" aria-label="Navegação da página">
+          <a href="#inicio">Início</a>
           <a href="#sobre">Sobre</a>
           <a href="#projetos">Projetos</a>
           <a href="#contato">Contato</a>
@@ -136,13 +137,13 @@
             <span class="section-marker">PROJETOS</span>
           </div>
           <div class="projects-heading">
-            <div>
-              <p class="eyebrow">TRABALHOS E APRENDIZADOS</p>
-              <h2 id="projects-title">Projetos<span>.</span></h2>
+            <div class="projects-heading-title">
+              <p class="eyebrow">DO CONCEITO À PRÁTICA</p>
+              <h2 id="projects-title">Projetos em<br /><span>movimento.</span></h2>
             </div>
             <p>
-              Este portfólio e estudos práticos mostram algumas das habilidades que estou
-              desenvolvendo.
+              Ideias transformadas em experiências web: ferramentas para acompanhar o mercado,
+              descobrir oportunidades e conversar com IA.
             </p>
           </div>
           <div class="project-grid">
@@ -165,10 +166,19 @@
                   <p class="project-type">APP WEB · STREAMLIT</p>
                   <h3>Arbitragem de criptomoedas</h3>
                   <p class="project-description">
-                    Aplicação web para arbitragem de criptomoedas.
+                    Acompanhe oportunidades de arbitragem entre criptomoedas em um painel
+                    interativo.
                   </p>
                 </div>
-                <span class="project-arrow" aria-hidden="true">↗</span>
+                <a
+                  class="project-link"
+                  href="https://arbitragem-de-criptomoedas-c9ohmrlo83nquzunjyw7ey.streamlit.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Ver projeto de arbitragem de criptomoedas"
+                >
+                  Ver projeto <span aria-hidden="true">↗</span>
+                </a>
               </div>
             </article>
             <article class="project-card">
@@ -179,10 +189,18 @@
                 rel="noopener noreferrer"
                 aria-label="Abrir projeto Alerta Vagas"
               >
-                <div class="study-card">
-                  <span>PROJETO WEB</span>
-                  <b>Alerta<br /><em>de vagas.</em></b>
-                  <span class="study-rule"></span>
+                <div class="jobs-preview" aria-hidden="true">
+                  <div class="preview-topline"><span></span><span>ALERTA DE VAGAS</span></div>
+                  <div class="job-preview">
+                    <span class="job-label">NOVA OPORTUNIDADE</span>
+                    <b>Desenvolvedor</b>
+                    <span class="job-meta">Tecnologia <i>·</i> Remoto</span>
+                  </div>
+                  <div class="job-preview job-preview-secondary">
+                    <span class="job-label">VAGA RECENTE</span>
+                    <b>Analista de dados</b>
+                    <span class="job-meta">Dados <i>·</i> Híbrido</span>
+                  </div>
                 </div>
                 <span class="art-index">02</span>
               </a>
@@ -191,10 +209,19 @@
                   <p class="project-type">APP WEB · STREAMLIT</p>
                   <h3>Alerta de vagas</h3>
                   <p class="project-description">
-                    Aplicação web para alertas de vagas.
+                    Encontre novas oportunidades de trabalho em uma experiência simples e
+                    direta.
                   </p>
                 </div>
-                <span class="project-arrow" aria-hidden="true">↗</span>
+                <a
+                  class="project-link"
+                  href="https://alerta-vagas-hbqhmi8qgbawcg7h2we5qq.streamlit.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Ver projeto Alerta de vagas"
+                >
+                  Ver projeto <span aria-hidden="true">↗</span>
+                </a>
               </div>
             </article>
             <article class="project-card">
@@ -205,10 +232,14 @@
                 rel="noopener noreferrer"
                 aria-label="Abrir projeto Chatbot Local"
               >
-                <div class="color-swatch swatch-one"></div>
-                <div class="color-swatch swatch-two"></div>
-                <div class="color-swatch swatch-three"></div>
-                <span class="color-note">CHATBOT<br />LOCAL</span>
+                <div class="chat-preview" aria-hidden="true">
+                  <div class="chat-topline"><span class="chat-indicator"></span> CHATBOT LOCAL</div>
+                  <div class="chat-message chat-user">Como posso começar?</div>
+                  <div class="chat-message chat-response">
+                    Olá! Estou aqui para ajudar.
+                  </div>
+                  <div class="chat-input">Escreva uma mensagem <span>↑</span></div>
+                </div>
                 <span class="art-index">03</span>
               </a>
               <div class="project-info">
@@ -216,10 +247,19 @@
                   <p class="project-type">APP WEB · STREAMLIT</p>
                   <h3>Chatbot local</h3>
                   <p class="project-description">
-                    Chatbot acessível pela web.
+                    Converse com um assistente em uma interface leve, feita para explorar
+                    interações com IA.
                   </p>
                 </div>
-                <span class="project-arrow" aria-hidden="true">↗</span>
+                <a
+                  class="project-link"
+                  href="https://chatbot-local-hymdrzyuj3bp8pqjjdqbro.streamlit.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Ver projeto Chatbot Local"
+                >
+                  Ver projeto <span aria-hidden="true">↗</span>
+                </a>
               </div>
             </article>
           </div>
@@ -235,28 +275,59 @@
               <p class="eyebrow">O PRÓXIMO PASSO COMEÇA COM UMA CONVERSA</p>
               <h2 id="contact-title">Obrigado<br />por chegar <span>até aqui.</span></h2>
               <p>
-                Quer acompanhar meus projetos ou trocar uma ideia? Me encontre no GitHub.
+                Quer acompanhar meus projetos ou trocar uma ideia? Me encontre no GitHub ou
+                LinkedIn.
               </p>
-              <a
-                class="contact-button"
-                href="https://github.com/pedrosantos-code"
-                target="_blank"
-                rel="noreferrer"
-              >
-                VISITAR MEU GITHUB <span aria-hidden="true">↗</span>
-              </a>
+              <div class="contact-actions">
+                <a
+                  class="contact-button"
+                  href="https://github.com/pedrosantos-code"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  VISITAR MEU GITHUB <span aria-hidden="true">↗</span>
+                </a>
+                <a
+                  class="contact-button"
+                  href="https://www.linkedin.com/in/pedro-dos-santos37/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  VISITAR MEU LINKEDIN <span aria-hidden="true">↗</span>
+                </a>
+              </div>
               <p class="github-handle">
                 <span>GITHUB</span>
                 <strong>@pedrosantos-code</strong>
               </p>
             </div>
-            <div class="contact-art" aria-hidden="true">
-              <span class="contact-year" id="contact-year"></span>
-              <div class="contact-circle circle-large"></div>
-              <div class="contact-circle circle-small"></div>
-              <span class="contact-spark">✳</span>
-              <span class="contact-side-note">FEITO COM CURIOSIDADE</span>
-            </div>
+            <a
+              class="contact-card"
+              href="https://github.com/pedrosantos-code"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Abrir o perfil de Pedro Santos no GitHub"
+            >
+              <span class="contact-card-orbit" aria-hidden="true">
+                <span class="contact-card-orbit-dot"></span>
+              </span>
+              <span class="contact-card-top">
+                <span class="contact-card-mark">PS<span>.</span></span>
+                <span class="contact-card-label">UM CANAL PARA IDEIAS</span>
+                <span class="contact-card-status" aria-hidden="true"></span>
+              </span>
+              <span class="contact-card-copy">
+                <span class="contact-card-eyebrow">TEM UM PROJETO EM MENTE?</span>
+                <span class="contact-card-title">Uma boa ideia<br />começa com <b>um oi.</b></span>
+                <span class="contact-card-description">
+                  Vamos conversar sobre tecnologia, projetos e possibilidades.
+                </span>
+              </span>
+              <span class="contact-card-bottom">
+                <span>GITHUB <b>@PEDROSANTOS-CODE</b></span>
+                <span class="contact-card-arrow" aria-hidden="true">↗</span>
+              </span>
+            </a>
           </div>
           <footer class="page-footer">
             <a class="footer-brand" href="#inicio">PS<span>.</span></a>

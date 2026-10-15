@@ -4,7 +4,7 @@ const menuToggle = document.querySelector<HTMLButtonElement>(".menu-toggle");
 const navigation = document.querySelector<HTMLElement>("#navigation");
 const navigationLinks = document.querySelectorAll<HTMLAnchorElement>(".navigation a");
 const pageSections = document.querySelectorAll<HTMLElement>("main section[id]");
-const yearElements = document.querySelectorAll<HTMLElement>("#header-year, #contact-year");
+const yearElements = document.querySelectorAll<HTMLElement>("#header-year");
 
 const updateYear = (): void => {
   const currentYear = new Date().getFullYear().toString();
