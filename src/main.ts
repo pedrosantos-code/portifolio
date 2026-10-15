@@ -6,6 +6,45 @@ const navigationLinks = document.querySelectorAll<HTMLAnchorElement>(".navigatio
 const pageSections = document.querySelectorAll<HTMLElement>("main section[id]");
 const yearElements = document.querySelectorAll<HTMLElement>("#header-year");
 const contactGlobe = document.querySelector<HTMLElement>(".contact-globe");
+const themeToggle = document.querySelector<HTMLButtonElement>(".theme-toggle");
+const themeColorMeta = document.querySelector<HTMLMetaElement>("#theme-color");
+const themeStorageKey = "portfolio-theme";
+
+const applyTheme = (theme: "dark" | "light"): void => {
+  document.documentElement.dataset.theme = theme;
+  themeToggle?.setAttribute("aria-pressed", String(theme === "light"));
+  themeToggle?.setAttribute(
+    "aria-label",
+    theme === "light" ? "Ativar tema escuro" : "Ativar tema claro",
+  );
+
+  const icon = themeToggle?.querySelector<HTMLElement>(".theme-icon");
+  if (icon) {
+    icon.textContent = theme === "light" ? "☾" : "☼";
+  }
+
+  themeColorMeta?.setAttribute("content", theme === "light" ? "#f3f7fa" : "#080b10");
+};
+
+let savedTheme: string | null = null;
+try {
+  savedTheme = window.localStorage.getItem(themeStorageKey);
+} catch (error) {
+  console.error("Não foi possível ler a preferência de tema salva.", error);
+}
+
+applyTheme(savedTheme === "light" ? "light" : "dark");
+
+themeToggle?.addEventListener("click", () => {
+  const nextTheme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+  applyTheme(nextTheme);
+
+  try {
+    window.localStorage.setItem(themeStorageKey, nextTheme);
+  } catch (error) {
+    console.error("Não foi possível salvar a preferência de tema.", error);
+  }
+});
 
 const updateYear = (): void => {
   const currentYear = new Date().getFullYear().toString();
