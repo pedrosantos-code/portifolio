@@ -5,7 +5,7 @@ const navigation = document.querySelector<HTMLElement>("#navigation");
 const navigationLinks = document.querySelectorAll<HTMLAnchorElement>(".navigation a");
 const pageSections = document.querySelectorAll<HTMLElement>("main section[id]");
 const yearElements = document.querySelectorAll<HTMLElement>(
-  "#header-year, #contact-year, #cover-year, #portrait-year",
+  "#header-year, #contact-year, #portrait-year",
 );
 
 const updateYear = (): void => {
@@ -86,7 +86,7 @@ if (
   !window.matchMedia("(prefers-reduced-motion: reduce)").matches
 ) {
   const revealTargets = document.querySelectorAll<HTMLElement>(
-    ".hero-copy, .hero-visual, .hero-insights, .hero-footer, " +
+    ".hero-copy, .hero-insights, .hero-footer, " +
       ".about .section-topline, .about-layout, .projects .section-topline, " +
       ".projects-heading, .project-card, .projects-note, .contact .section-topline, " +
       ".contact-layout, .page-footer",
