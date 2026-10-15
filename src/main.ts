@@ -5,6 +5,7 @@ const navigation = document.querySelector<HTMLElement>("#navigation");
 const navigationLinks = document.querySelectorAll<HTMLAnchorElement>(".navigation a");
 const pageSections = document.querySelectorAll<HTMLElement>("main section[id]");
 const yearElements = document.querySelectorAll<HTMLElement>("#header-year");
+const contactGlobe = document.querySelector<HTMLElement>(".contact-globe");
 
 const updateYear = (): void => {
   const currentYear = new Date().getFullYear().toString();
@@ -30,6 +31,26 @@ document.addEventListener("visibilitychange", () => {
     updateYear();
   }
 });
+
+if (
+  contactGlobe &&
+  window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
+  !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+) {
+  contactGlobe.addEventListener("pointermove", (event: PointerEvent) => {
+    const bounds = contactGlobe.getBoundingClientRect();
+    const horizontal = ((event.clientX - bounds.left) / bounds.width - 0.5) * 2;
+    const vertical = ((event.clientY - bounds.top) / bounds.height - 0.5) * 2;
+
+    contactGlobe.style.setProperty("--globe-rotate-y", `${horizontal * 12}deg`);
+    contactGlobe.style.setProperty("--globe-rotate-x", `${vertical * -12}deg`);
+  });
+
+  contactGlobe.addEventListener("pointerleave", () => {
+    contactGlobe.style.removeProperty("--globe-rotate-x");
+    contactGlobe.style.removeProperty("--globe-rotate-y");
+  });
+}
 
 if (!menuToggle || !navigation) {
   throw new Error("Não foi possível inicializar a navegação da página.");
@@ -84,7 +105,7 @@ if (
   !window.matchMedia("(prefers-reduced-motion: reduce)").matches
 ) {
   const revealTargets = document.querySelectorAll<HTMLElement>(
-    ".hero h1, " +
+    ".hero-content, " +
       ".about .section-topline, .about-layout, .projects .section-topline, " +
       ".projects-heading, .project-card, .projects-note, .contact .section-topline, " +
       ".contact-layout, .page-footer",
