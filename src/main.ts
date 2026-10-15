@@ -57,3 +57,29 @@ const sectionObserver = new IntersectionObserver(
 for (const section of pageSections) {
   sectionObserver.observe(section);
 }
+
+if (
+  "IntersectionObserver" in window &&
+  !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+) {
+  const revealTargets = document.querySelectorAll<HTMLElement>(
+    ".hero-copy, .hero-visual, .hero-insights, .hero-footer, " +
+      ".about .section-topline, .about-layout, .projects .section-topline, " +
+      ".projects-heading, .project-card, .projects-note, .contact .section-topline, " +
+      ".contact-layout, .page-footer",
+  );
+
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        entry.target.classList.toggle("is-visible", entry.isIntersecting);
+      }
+    },
+    { rootMargin: "0px 0px -8% 0px", threshold: 0.12 },
+  );
+
+  for (const target of revealTargets) {
+    target.classList.add("scroll-reveal");
+    revealObserver.observe(target);
+  }
+}
