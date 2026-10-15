@@ -86,7 +86,7 @@ if (
   !window.matchMedia("(prefers-reduced-motion: reduce)").matches
 ) {
   const revealTargets = document.querySelectorAll<HTMLElement>(
-    ".hero-copy, .hero-insights, .hero-footer, " +
+    ".hero h1, " +
       ".about .section-topline, .about-layout, .projects .section-topline, " +
       ".projects-heading, .project-card, .projects-note, .contact .section-topline, " +
       ".contact-layout, .page-footer",
