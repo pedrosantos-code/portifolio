@@ -243,6 +243,8 @@ button:focus-visible {
   aspect-ratio: 0.667;
   object-fit: cover;
   object-position: center top;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 82%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 82%, transparent 100%);
 }
 
 .about-copy {
