@@ -209,11 +209,11 @@ button:focus-visible {
 }
 
 .hero-title-blue {
-  color: #1764ff;
+  color: var(--blue);
 }
 
 .projects-heading h2 span {
-  color: var(--red);
+  color: var(--blue);
 }
 
 .section-topline {
@@ -365,7 +365,7 @@ button:focus-visible {
 
 .detail-block h3 {
   margin: 0 0 10px;
-  color: #bd82ff;
+  color: var(--blue);
   font-family: var(--mono);
   font-size: 9px;
   font-weight: 500;
@@ -419,15 +419,15 @@ button:focus-visible {
 
 .skill-meter::before {
   display: block;
-  width: 66.67%;
+  width: 50%;
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, #8d63ff, #e750a7);
+  background: linear-gradient(90deg, #1764ff, var(--blue));
   content: "";
 }
 
 .skill-list li[data-level="iniciante"] .skill-meter::before {
-  width: 33.33%;
+  width: 25%;
 }
 
 .skill-list li[data-level="avancado"] .skill-meter::before {
@@ -547,17 +547,6 @@ button:focus-visible {
   text-transform: uppercase;
 }
 
-.mini-browser-shape {
-  position: absolute;
-  right: -16%;
-  bottom: -46%;
-  width: 65%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: #d3183f;
-  box-shadow: 0 0 35px #d3183f6b;
-}
-
 .art-study {
   background:
     radial-gradient(ellipse at 52% 48%, #16698a6b, transparent 51%),
@@ -600,7 +589,7 @@ button:focus-visible {
   width: 35%;
   height: 2px;
   margin-top: 10px;
-  background: #e13b50;
+  background: #2fc4ed;
 }
 
 .art-color {
@@ -626,7 +615,7 @@ button:focus-visible {
 .swatch-two {
   top: 26%;
   left: 36%;
-  background: #db2346;
+  background: #1764ff;
   transform: rotate(-10deg);
 }
 
