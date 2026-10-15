@@ -4,11 +4,34 @@ const menuToggle = document.querySelector<HTMLButtonElement>(".menu-toggle");
 const navigation = document.querySelector<HTMLElement>("#navigation");
 const navigationLinks = document.querySelectorAll<HTMLAnchorElement>(".navigation a");
 const pageSections = document.querySelectorAll<HTMLElement>("main section[id]");
-const currentYear = new Date().getFullYear().toString();
+const yearElements = document.querySelectorAll<HTMLElement>(
+  "#header-year, #contact-year, #cover-year, #portrait-year",
+);
 
-for (const year of document.querySelectorAll<HTMLElement>("#header-year, #contact-year")) {
-  year.textContent = currentYear;
-}
+const updateYear = (): void => {
+  const currentYear = new Date().getFullYear().toString();
+  for (const element of yearElements) {
+    element.textContent = currentYear;
+  }
+};
+
+const scheduleYearUpdate = (): void => {
+  const now = new Date();
+  const nextYear = new Date(now.getFullYear() + 1, 0, 1);
+  window.setTimeout(() => {
+    updateYear();
+    scheduleYearUpdate();
+  }, nextYear.getTime() - now.getTime() + 100);
+};
+
+updateYear();
+scheduleYearUpdate();
+window.addEventListener("focus", updateYear);
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") {
+    updateYear();
+  }
+});
 
 if (!menuToggle || !navigation) {
   throw new Error("Não foi possível inicializar a navegação da página.");

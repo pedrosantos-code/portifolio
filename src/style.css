@@ -36,8 +36,9 @@ body {
   min-width: 320px;
   margin: 0;
   background:
-    radial-gradient(ellipse at 50% 16%, #07517b29, transparent 38%),
-    radial-gradient(ellipse at 100% 55%, #124d6e18, transparent 34%),
+    radial-gradient(ellipse at 75% 10%, #07517b35, transparent 34%),
+    radial-gradient(ellipse at 12% 48%, #07517b1c, transparent 36%),
+    radial-gradient(ellipse at 85% 78%, #124d6e1d, transparent 34%),
     var(--background);
 }
 
@@ -63,7 +64,7 @@ button:focus-visible {
 }
 
 .page {
-  width: min(100% - 48px, 1360px);
+  width: 100%;
   margin-inline: auto;
 }
 
@@ -150,9 +151,9 @@ button:focus-visible {
 
 .panel {
   position: relative;
-  overflow: hidden;
-  border: 1px solid #a3c4d21a;
-  background: var(--panel);
+  overflow: clip;
+  border: 0;
+  background: transparent;
   scroll-margin-top: 82px;
 }
 
@@ -193,10 +194,10 @@ button:focus-visible {
   align-items: center;
   column-gap: 2%;
   row-gap: 34px;
-  padding: 65px 7% 85px;
+  padding: 65px max(7%, calc((100vw - 1240px) / 2)) 85px;
   background:
-    radial-gradient(ellipse at 78% 50%, #00538164, transparent 36%),
-    linear-gradient(112deg, #05070b 25%, #071522 67%, #062a40);
+    radial-gradient(ellipse at 78% 50%, #00538145, transparent 38%),
+    radial-gradient(ellipse at 50% 100%, #07152278, transparent 58%);
 }
 
 .hero-copy {
@@ -512,16 +513,7 @@ button:focus-visible {
 }
 
 .section-topline {
-  display: flex;
-  min-height: 46px;
-  align-items: center;
-  justify-content: space-between;
-  padding-inline: 30px;
-  border-bottom: 1px solid var(--line);
-  color: #83909e;
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.12em;
+  display: none;
 }
 
 .section-marker {
@@ -529,10 +521,10 @@ button:focus-visible {
 }
 
 .about {
-  padding-bottom: 34px;
+  padding-block: 70px;
   background:
     radial-gradient(ellipse at 19% 59%, #0056813b, transparent 32%),
-    #05070b;
+    transparent;
 }
 
 .about-layout {
@@ -541,7 +533,7 @@ button:focus-visible {
   grid-template-columns: 0.8fr 1.2fr;
   align-items: center;
   gap: 7%;
-  padding: 43px 9% 17px;
+  padding: 25px max(7%, calc((100vw - 1180px) / 2));
 }
 
 .portrait {
@@ -690,10 +682,10 @@ button:focus-visible {
 }
 
 .projects {
-  padding-bottom: 36px;
+  padding-block: 70px;
   background:
     radial-gradient(ellipse at 4% 51%, #0878a82e, transparent 32%),
-    #05070b;
+    transparent;
 }
 
 .projects-heading {
@@ -701,7 +693,7 @@ button:focus-visible {
   align-items: end;
   justify-content: space-between;
   gap: 30px;
-  padding: 38px 30px 29px;
+  padding: 0 max(7%, calc((100vw - 1180px) / 2)) 29px;
 }
 
 .projects-heading h2 {
@@ -721,7 +713,7 @@ button:focus-visible {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 22px;
-  padding-inline: 30px;
+  padding-inline: max(7%, calc((100vw - 1180px) / 2));
 }
 
 .project-card {
@@ -947,7 +939,7 @@ button:focus-visible {
 }
 
 .projects-note {
-  margin: 26px 30px 0;
+  margin: 26px max(7%, calc((100vw - 1180px) / 2)) 0;
   color: #6f7b89;
   font-family: var(--mono);
   font-size: 9px;
@@ -955,9 +947,10 @@ button:focus-visible {
 }
 
 .contact {
+  padding-top: 55px;
   background:
     radial-gradient(ellipse at 80% 51%, #006b9c3d, transparent 38%),
-    linear-gradient(115deg, #05070b, #07111c 68%, #071a28);
+    transparent;
 }
 
 .contact-layout {
@@ -965,7 +958,7 @@ button:focus-visible {
   min-height: 360px;
   grid-template-columns: 1fr 0.9fr;
   align-items: center;
-  padding: 48px 9%;
+  padding: 48px max(7%, calc((100vw - 1180px) / 2));
 }
 
 .contact-copy {
@@ -1089,7 +1082,7 @@ button:focus-visible {
   min-height: 59px;
   align-items: center;
   justify-content: space-between;
-  padding-inline: 30px;
+  padding-inline: max(7%, calc((100vw - 1180px) / 2));
   border-top: 1px solid #ffffff12;
   color: #798592;
   font-family: var(--mono);
@@ -1118,7 +1111,7 @@ button:focus-visible {
 
 @media (max-width: 760px) {
   .page {
-    width: min(100% - 32px, 620px);
+    width: 100%;
   }
 
   .hero {
@@ -1181,7 +1174,7 @@ button:focus-visible {
   }
 
   .page {
-    width: calc(100% - 22px);
+    width: 100%;
   }
 
   .topbar {
