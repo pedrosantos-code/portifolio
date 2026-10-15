@@ -8,6 +8,7 @@ const yearElements = document.querySelectorAll<HTMLElement>("#header-year");
 const contactGlobe = document.querySelector<HTMLElement>(".contact-globe");
 const themeToggle = document.querySelector<HTMLButtonElement>(".theme-toggle");
 const themeColorMeta = document.querySelector<HTMLMetaElement>("#theme-color");
+const faviconLink = document.querySelector<HTMLLinkElement>("#favicon");
 const themeStorageKey = "portfolio-theme";
 
 const applyTheme = (theme: "dark" | "light"): void => {
@@ -24,6 +25,10 @@ const applyTheme = (theme: "dark" | "light"): void => {
   }
 
   themeColorMeta?.setAttribute("content", theme === "light" ? "#f3f7fa" : "#080b10");
+  faviconLink?.setAttribute(
+    "href",
+    theme === "light" ? "/favicon-light.svg" : "/favicon.svg",
+  );
 };
 
 let savedTheme: string | null = null;
