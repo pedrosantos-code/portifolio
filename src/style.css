@@ -231,87 +231,19 @@ button:focus-visible {
 .about-layout {
   display: grid;
   min-height: 0;
-  grid-template-columns: 0.8fr 1.2fr;
+  grid-template-columns: minmax(250px, 0.8fr) minmax(0, 1.2fr);
   align-items: center;
-  gap: 7%;
+  gap: 0;
   padding: 25px max(7%, calc((100vw - 1180px) / 2));
 }
 
 .portrait {
-  position: relative;
-  display: grid;
-  width: min(100%, 280px);
-  aspect-ratio: 0.78;
-  place-items: center;
-  justify-self: center;
-  overflow: hidden;
+  display: block;
+  width: 100%;
+  aspect-ratio: 0.667;
+  object-fit: cover;
+  object-position: center top;
   border: 1px solid #3895b454;
-  background:
-    linear-gradient(0deg, #030609e8, transparent 42%),
-    radial-gradient(ellipse at 48% 48%, #087aaf 0, #084160 29%, #071824 62%, #05070b 83%);
-}
-
-.portrait::before,
-.portrait::after {
-  position: absolute;
-  content: "";
-}
-
-.portrait::before {
-  right: -15%;
-  bottom: -35%;
-  left: -20%;
-  height: 65%;
-  border: 1px solid #54c8ff32;
-  border-radius: 50%;
-  transform: rotate(-13deg);
-}
-
-.portrait::after {
-  top: 8%;
-  right: 8%;
-  width: 34px;
-  height: 34px;
-  border: 1px solid #9adfff61;
-  border-radius: 50%;
-}
-
-.portrait-glow {
-  position: absolute;
-  width: 54%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: #11a5df2e;
-  filter: blur(28px);
-}
-
-.portrait-initials {
-  position: relative;
-  color: #d6f3ff;
-  font-family: var(--display);
-  font-size: clamp(75px, 10vw, 120px);
-  font-weight: 800;
-  letter-spacing: -0.1em;
-  text-shadow: 0 0 45px #25baff8a;
-}
-
-.portrait-caption,
-.portrait-index {
-  position: absolute;
-  bottom: 14px;
-  color: #a3b8c4;
-  font-family: var(--mono);
-  font-size: 7px;
-  letter-spacing: 0.12em;
-}
-
-.portrait-caption {
-  left: 14px;
-}
-
-.portrait-index {
-  right: 14px;
-  color: var(--blue);
 }
 
 .about-copy {
@@ -1048,11 +980,6 @@ button:focus-visible {
 
   .portrait {
     width: min(68%, 230px);
-    justify-self: start;
-  }
-
-  .portrait-initials {
-    font-size: 95px;
   }
 
   .about-copy h2,
