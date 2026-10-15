@@ -1,51 +1,34 @@
-# Guia de Configuração: Meu Portfólio Streamlit
+# Portfólio pessoal
 
-Este repositório foi criado para centralizar e apresentar meus projetos de forma interativa. Este guia ensina como preparar o ambiente e colocar o site no ar.
+Portfólio web construído com TypeScript, HTML e CSS usando Vite.
 
-📋 Pré-requisitos
-Antes de começar, certifique-se de ter o Python instalado em sua máquina.
+## Requisitos
 
-🛠️ Passo 1: Instalação das Dependências
-Para que o projeto funcione, precisamos de bibliotecas específicas para interface, dados e imagens. Execute o comando abaixo no seu terminal:
+- Node.js 20.19+ ou 22.12+
+- npm
 
-Bash
+## Rodar localmente
 
-pip install streamlit pandas Pillow plotly
+```bash
+npm install
+npm run dev
+```
 
-Dica de mestre: Se você encontrar erros de permissão ou "comando não encontrado", tente usar:
+Abra o endereço local mostrado no terminal para visualizar o site.
 
-python -m pip install streamlit pandas Pillow plotly
+## Gerar a versão de produção
 
-📂 Passo 2: Organização do Projeto
-Para o site "puxar" seus projetos corretamente, mantenha os arquivos organizados assim:
+```bash
+npm run build
+npm run preview
+```
 
-app.py → O código principal do site.
+Os arquivos otimizados são gerados na pasta `dist/`.
 
-requirements.txt → Lista de bibliotecas (gerada automaticamente).
+## Personalizar
 
-assets/ → Pasta para suas fotos e prints dos projetos.
+- Edite os textos, seções e links em `index.html`.
+- Altere interações em `src/main.ts`.
+- Ajuste cores e layout em `src/style.css`.
 
-💻 Passo 3: Comandos de Execução
-Aqui estão os comandos principais que você usará no dia a dia:
-
-Para rodar o site localmente:
-
-Bash
-
-streamlit run app.py
-
-Para gerar o arquivo de instalação (Hospedagem):
-Se você for colocar o site na nuvem (Streamlit Cloud), você precisa dizer ao servidor o que instalar. Use este comando para criar o arquivo de lista:
-
-Bash
-
-pip freeze > requirements.txt
-
-📑 Conteúdo do Site
-O site foi distribuído em seções estratégicas para facilitar a leitura:
-
-🏠 Home / Sobre Mim: Apresentação pessoal, formação e objetivos.
-
-📂 Portfólio: Exibição dos projetos realizados com descrições e links.
-
-📧 Contato: Espaço para conexões profissionais (LinkedIn/E-mail).
+Atualize os links e as informações de contato para refletirem seus dados antes de publicar.
