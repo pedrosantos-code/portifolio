@@ -243,7 +243,6 @@ button:focus-visible {
   aspect-ratio: 0.667;
   object-fit: cover;
   object-position: center top;
-  border: 1px solid #3895b454;
 }
 
 .about-copy {
