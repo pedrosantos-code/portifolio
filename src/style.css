@@ -16,6 +16,7 @@
   --text: #f2f4f7;
   --muted: #929baa;
   --blue: #18baff;
+  --blue-soft: #8ac9df;
   --red: #d3183f;
   --line: #242a34;
   --display: "Barlow Condensed", Impact, sans-serif;
@@ -29,6 +30,7 @@
   --text: #172a38;
   --muted: #526574;
   --blue: #087fae;
+  --blue-soft: #176b89;
   --line: #d4e0e7;
   color-scheme: light;
 }
@@ -315,6 +317,8 @@ button:focus-visible {
 }
 
 .hero-title-blue {
+  position: relative;
+  display: inline-block;
   color: var(--blue);
 }
 
@@ -375,6 +379,7 @@ button:focus-visible {
 
 .about-copy h2 span {
   color: var(--blue);
+  text-shadow: 0 0 34px #18baff28;
 }
 
 .about-text,
@@ -669,7 +674,7 @@ button:focus-visible {
 
 .job-meta i {
   padding-inline: 3px;
-  color: var(--blue);
+  color: var(--blue-soft);
   font-style: normal;
 }
 
@@ -857,6 +862,37 @@ button:focus-visible {
 }
 
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .hero-title-blue::after {
+    position: absolute;
+    inset: 0;
+    color: transparent;
+    background-image: linear-gradient(
+      110deg,
+      transparent 0%,
+      transparent 43%,
+      #eafaff 50%,
+      transparent 57%,
+      transparent 100%
+    );
+    background-position: 100% 0;
+    background-repeat: no-repeat;
+    background-size: 250% 100%;
+    content: attr(data-shimmer-text);
+    pointer-events: none;
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  .hero h1:hover .hero-title-blue::after {
+    animation: hero-title-sweep 750ms ease-out 1;
+  }
+
+  @keyframes hero-title-sweep {
+    to {
+      background-position: 0 0;
+    }
+  }
+
   .project-card:hover {
     border-color: #18baff87;
     box-shadow: 0 22px 52px #0008, 0 0 32px #18baff0e;
@@ -938,6 +974,7 @@ button:focus-visible {
 
 .contact-copy h2 span {
   color: var(--blue);
+  text-shadow: 0 0 34px #18baff28;
 }
 
 .contact-copy > p:not(.eyebrow) {
