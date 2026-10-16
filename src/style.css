@@ -1192,7 +1192,8 @@ button:focus-visible {
   }
 
   .about-layout {
-    gap: 5%;
+    grid-template-columns: minmax(0, 0.6fr) minmax(0, 1.4fr);
+    gap: 20px;
     padding-inline: 6%;
   }
 
