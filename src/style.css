@@ -294,6 +294,7 @@ button:focus-visible {
   display: flex;
   align-items: baseline;
   flex-wrap: nowrap;
+  transform-style: preserve-3d;
   justify-self: center;
   margin: 0 0 0 -5px;
   font-family: var(--display);
@@ -307,6 +308,18 @@ button:focus-visible {
   transition: transform 220ms ease-out;
   white-space: nowrap;
   text-transform: uppercase;
+}
+
+.hero h1 > span:first-child,
+.hero-title-blue {
+  transform-style: preserve-3d;
+}
+
+.hero h1 > span:first-child {
+  transform:
+    translate3d(calc(var(--title-split-x, 0px) * -1), 0, var(--title-depth, 0px))
+    rotateY(var(--title-rotation, 0deg));
+  transform-origin: right center;
 }
 
 .hero-name {
@@ -335,6 +348,10 @@ button:focus-visible {
   padding-right: 0.08em;
   margin-right: -0.08em;
   color: var(--blue);
+  transform:
+    translate3d(var(--title-split-x, 0px), 0, var(--title-depth, 0px))
+    rotateY(calc(var(--title-rotation, 0deg) * -1));
+  transform-origin: left center;
 }
 
 .projects-heading h2 span {
@@ -489,6 +506,15 @@ button:focus-visible {
   border-radius: inherit;
   background: linear-gradient(90deg, #1764ff, var(--blue));
   content: "";
+}
+
+.skills-animated .skill-meter::before {
+  transition: width 650ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--skill-delay, 0ms);
+}
+
+.about-details.skills-animated:not(.skills-visible) .skill-list li .skill-meter::before {
+  width: 0;
 }
 
 .skill-list li[data-level="iniciante"] .skill-meter::before {

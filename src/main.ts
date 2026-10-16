@@ -13,6 +13,8 @@ const faviconLink = document.querySelector<HTMLLinkElement>("#favicon");
 const readingProgress = document.querySelector<HTMLElement>(".reading-progress");
 const readingProgressBar = document.querySelector<HTMLElement>(".reading-progress-bar");
 const backToTop = document.querySelector<HTMLButtonElement>(".back-to-top");
+const skillDetails = document.querySelector<HTMLElement>(".about-details");
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const themeStorageKey = "portfolio-theme";
 
 const applyTheme = (theme: "dark" | "light"): void => {
@@ -92,6 +94,22 @@ const updateScrollUI = (): void => {
     readingProgressBar.style.transform = `scaleX(${progress / 100})`;
   }
 
+  if (heroTitle && !prefersReducedMotion.matches) {
+    const joinDistance = Math.min(260, window.innerHeight * 0.35);
+    const joinProgress = Math.min(1, Math.max(0, window.scrollY / joinDistance));
+    const availableSeparation = Math.max(
+      0,
+      ((window.innerWidth - heroTitle.offsetWidth) / 2 - 16) * 0.7,
+    );
+    const separation =
+      (1 - joinProgress) *
+      Math.min(110, window.innerWidth * 0.12, availableSeparation);
+
+    heroTitle.style.setProperty("--title-split-x", `${separation}px`);
+    heroTitle.style.setProperty("--title-depth", `${-110 * (1 - joinProgress)}px`);
+    heroTitle.style.setProperty("--title-rotation", `${18 * (1 - joinProgress)}deg`);
+  }
+
   backToTop?.toggleAttribute("hidden", window.scrollY < 400);
 };
 
@@ -100,14 +118,16 @@ window.addEventListener("resize", updateScrollUI);
 updateScrollUI();
 
 backToTop?.addEventListener("click", () => {
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
+  window.scrollTo({
+    top: 0,
+    behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+  });
 });
 
 if (
   heroTitle &&
   window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
-  !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  !prefersReducedMotion.matches
 ) {
   heroTitle.addEventListener("pointermove", (event: PointerEvent) => {
     const bounds = heroTitle.getBoundingClientRect();
@@ -183,6 +203,29 @@ const sectionObserver = new IntersectionObserver(
           link.removeAttribute("aria-current");
         }
       }
+
+      const sectionId = entry.target.id;
+      if (
+        sectionId === "sobre" ||
+        sectionId === "projetos" ||
+        sectionId === "contato"
+      ) {
+        const sectionHash = `#${sectionId}`;
+        if (window.location.hash !== sectionHash) {
+          window.history.replaceState(window.history.state, "", sectionHash);
+        }
+      } else if (
+        sectionId === "inicio" &&
+        (window.location.hash === "#sobre" ||
+          window.location.hash === "#projetos" ||
+          window.location.hash === "#contato")
+      ) {
+        window.history.replaceState(
+          window.history.state,
+          "",
+          `${window.location.pathname}${window.location.search}`,
+        );
+      }
     }
   },
   { rootMargin: "-35% 0px -55% 0px" },
@@ -192,9 +235,28 @@ for (const section of pageSections) {
   sectionObserver.observe(section);
 }
 
+if (skillDetails && "IntersectionObserver" in window && !prefersReducedMotion.matches) {
+  const skillMeters = skillDetails.querySelectorAll<HTMLElement>(".skill-meter");
+  skillMeters.forEach((meter, index) => {
+    meter.style.setProperty("--skill-delay", `${index * 70}ms`);
+  });
+  skillDetails.classList.add("skills-animated");
+
+  const skillObserver = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        entry.target.classList.toggle("skills-visible", entry.isIntersecting);
+      }
+    },
+    { threshold: 0.25 },
+  );
+
+  skillObserver.observe(skillDetails);
+}
+
 if (
   "IntersectionObserver" in window &&
-  !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  !prefersReducedMotion.matches
 ) {
   const revealTargets = document.querySelectorAll<HTMLElement>(
     ".hero-content, " +
