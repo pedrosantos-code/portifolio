@@ -332,6 +332,8 @@ button:focus-visible {
 .hero-title-blue {
   position: relative;
   display: inline-block;
+  padding-right: 0.08em;
+  margin-right: -0.08em;
   color: var(--blue);
 }
 
@@ -598,6 +600,13 @@ button:focus-visible {
   color: inherit;
 }
 
+.project-art > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
 .project-card-featured .project-art {
   background:
     radial-gradient(ellipse at 50% 50%, #1683ae35, transparent 72%),
@@ -607,9 +616,6 @@ button:focus-visible {
 .art-portfolio img {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
   transition: transform 400ms ease;
 }
 
@@ -620,25 +626,18 @@ button:focus-visible {
 }
 
 .art-jobs img {
-  width: 100%;
-  height: 100%;
   object-fit: contain;
-  object-position: center;
 }
 
-.art-color {
+.art-chatbot {
   background:
     radial-gradient(ellipse at 50% 50%, #167da742, transparent 68%),
     linear-gradient(145deg, #0d1820, #08121b);
 }
 
-.art-color img {
+.art-chatbot img {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
 }
 
 .art-index {
@@ -761,9 +760,9 @@ button:focus-visible {
       transparent 57%,
       transparent 100%
     );
-    background-position: 100% 0;
+    background-position: 110% 0;
     background-repeat: no-repeat;
-    background-size: 250% 100%;
+    background-size: 220% 100%;
     content: attr(data-shimmer-text);
     pointer-events: none;
     -webkit-background-clip: text;
@@ -776,11 +775,11 @@ button:focus-visible {
 
   @keyframes hero-title-sweep {
     from {
-      background-position: 160% 0;
+      background-position: 110% 0;
     }
 
     to {
-      background-position: -120% 0;
+      background-position: -10% 0;
     }
   }
 
