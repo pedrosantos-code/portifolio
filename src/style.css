@@ -162,8 +162,7 @@ button:focus-visible {
   letter-spacing: -0.08em;
 }
 
-.brand-mark::after,
-.footer-brand span {
+.brand-accent {
   color: var(--blue);
 }
 
@@ -314,10 +313,20 @@ button:focus-visible {
   margin: 24px 0 0;
   color: #9db5c2;
   font-family: var(--mono);
-  font-size: clamp(10px, 1.2vw, 14px);
-  letter-spacing: 0.22em;
+  font-size: clamp(11px, 1.2vw, 14px);
+  letter-spacing: 0.16em;
   text-align: center;
   text-transform: uppercase;
+}
+
+.hero-focus {
+  max-width: 100%;
+  margin: 11px 0 0;
+  color: #aebbc8;
+  font-size: clamp(12px, 1.25vw, 15px);
+  line-height: 1.5;
+  text-align: center;
+  text-wrap: balance;
 }
 
 .hero-title-blue {
@@ -391,13 +400,13 @@ button:focus-visible {
 .contact-copy > p:not(.eyebrow) {
   max-width: 480px;
   color: #a0aab6;
-  font-size: 13px;
-  line-height: 1.85;
+  font-size: 14px;
+  line-height: 1.8;
 }
 
 .about-text {
-  text-align: justify;
-  text-align-last: left;
+  margin: 0 0 12px;
+  text-align: left;
 }
 
 .about-details {
@@ -422,9 +431,9 @@ button:focus-visible {
   margin: 0 0 10px;
   color: var(--blue);
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 500;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.14em;
   line-height: 1.25;
   text-transform: uppercase;
 }
@@ -450,7 +459,7 @@ button:focus-visible {
   justify-content: space-between;
   gap: 6px;
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 10px;
 }
 
 .skill-heading span {
@@ -463,7 +472,7 @@ button:focus-visible {
 
 .skill-heading span:last-child {
   color: #aeb8c5;
-  font-size: 8px;
+  font-size: 9px;
 }
 
 .skill-meter {
@@ -520,8 +529,8 @@ button:focus-visible {
   margin: 0 0 15px;
   color: #89d8f2;
   font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.19em;
+  font-size: 10px;
+  letter-spacing: 0.12em;
 }
 
 .projects-heading .eyebrow::before {
@@ -549,7 +558,7 @@ button:focus-visible {
   max-width: 300px;
   margin: 0 0 5px;
   color: #97a2af;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.7;
   text-align: justify;
   text-align-last: left;
@@ -635,8 +644,8 @@ button:focus-visible {
   gap: 7px;
   color: #9db3c1;
   font-family: var(--mono);
-  font-size: 7px;
-  letter-spacing: 0.1em;
+  font-size: 9px;
+  letter-spacing: 0.06em;
 }
 
 .preview-topline > span:first-child {
@@ -661,20 +670,20 @@ button:focus-visible {
   grid-column: 1 / -1;
   color: #62c9eb;
   font-family: var(--mono);
-  font-size: 6px;
-  letter-spacing: 0.08em;
+  font-size: 8px;
+  letter-spacing: 0.04em;
 }
 
 .job-preview b {
   color: #e4edf3;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
 }
 
 .job-meta {
   grid-column: 1 / -1;
   color: #8294a1;
-  font-size: 8px;
+  font-size: 10px;
 }
 
 .job-meta i {
@@ -733,7 +742,7 @@ button:focus-visible {
   border: 1px solid #ffffff12;
   border-radius: 7px;
   color: #c5d1d9;
-  font-size: 9px;
+  font-size: 11px;
   line-height: 1.5;
 }
 
@@ -756,7 +765,7 @@ button:focus-visible {
   border: 1px solid #ffffff1b;
   border-radius: 6px;
   color: #728491;
-  font-size: 7px;
+  font-size: 9px;
 }
 
 .chat-input span {
@@ -799,7 +808,7 @@ button:focus-visible {
 
 .project-techs {
   display: flex;
-  min-height: 46px;
+  min-height: 52px;
   flex-wrap: wrap;
   align-content: flex-start;
   gap: 6px;
@@ -809,14 +818,13 @@ button:focus-visible {
 }
 
 .project-techs li {
-  padding: 5px 8px;
+  padding: 6px 9px;
   border: 1px solid #18baff38;
   border-radius: 999px;
   background: #18baff0b;
   color: #88d9f4;
-  font-family: var(--mono);
-  font-size: 8px;
-  letter-spacing: 0.09em;
+  font-size: 11px;
+  letter-spacing: 0;
   line-height: 1;
 }
 
@@ -832,8 +840,8 @@ button:focus-visible {
 
 .project-description {
   margin: 6px 0 18px;
-  color: #98a3af;
-  font-size: 12px;
+  color: #aeb8c5;
+  font-size: 14px;
   line-height: 1.7;
   text-align: justify;
   text-align-last: left;
@@ -852,8 +860,8 @@ button:focus-visible {
   background: #ffffff04;
   color: #d9e8ef;
   font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.08em;
+  font-size: 10px;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   transition:
     border-color 180ms ease,
@@ -1022,8 +1030,8 @@ button:focus-visible {
   background: #0b1d28a6;
   color: #d8eef5;
   font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.08em;
+  font-size: 10px;
+  letter-spacing: 0.04em;
   transition:
     border-color 180ms ease,
     background-color 180ms ease,
@@ -1394,7 +1402,7 @@ button:focus-visible {
 
   .projects-heading .eyebrow {
     margin-bottom: 13px;
-    font-size: 8px;
+    font-size: 9px;
   }
 
   .projects-heading h2 {
@@ -1414,7 +1422,7 @@ button:focus-visible {
 
   .project-description {
     max-width: 330px;
-    font-size: 11px;
+    font-size: 13px;
   }
 
   .projects-note {
@@ -1444,7 +1452,7 @@ button:focus-visible {
   .page-footer {
     min-height: 52px;
     padding-inline: 14px;
-    font-size: 7px;
+    font-size: 8px;
   }
 }
 
@@ -1493,7 +1501,8 @@ button:focus-visible {
 }
 
 :root[data-theme="light"] .topbar-year,
-:root[data-theme="light"] .hero-name {
+:root[data-theme="light"] .hero-name,
+:root[data-theme="light"] .hero-focus {
   color: #536574;
 }
 

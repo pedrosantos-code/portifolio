@@ -7,5 +7,13 @@
     font-size="47"
     font-weight="900"
     letter-spacing="-4"
-  >PS</text>
+  >P</text>
+  <text
+    x="28"
+    y="49"
+    fill="#18baff"
+    font-family="Impact, 'Arial Narrow', sans-serif"
+    font-size="47"
+    font-weight="900"
+  >S</text>
 </svg>
