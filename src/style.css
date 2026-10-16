@@ -40,13 +40,13 @@
 }
 
 html {
-  min-width: 320px;
+  min-width: 0;
   scroll-behavior: smooth;
   scroll-padding-top: 74px;
 }
 
 body {
-  min-width: 320px;
+  min-width: 0;
   margin: 0;
   background:
     radial-gradient(ellipse at 75% 10%, #07517b35, transparent 34%),
@@ -333,7 +333,6 @@ button:focus-visible {
   position: relative;
   display: inline-block;
   color: var(--blue);
-  text-shadow: 0 0 34px #18baff28;
 }
 
 .projects-heading h2 span {
@@ -393,7 +392,6 @@ button:focus-visible {
 
 .about-copy h2 span {
   color: var(--blue);
-  text-shadow: 0 0 34px #18baff28;
 }
 
 .about-text,
@@ -551,7 +549,6 @@ button:focus-visible {
   display: inline-block;
   margin-top: 7px;
   color: var(--blue);
-  text-shadow: 0 0 34px #18baff28;
 }
 
 .projects-heading > p {
@@ -566,6 +563,7 @@ button:focus-visible {
 
 .project-grid {
   display: grid;
+  grid-auto-rows: 1fr;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
   padding-inline: max(7%, calc((100vw - 1180px) / 2));
@@ -593,7 +591,7 @@ button:focus-visible {
 .project-art {
   position: relative;
   display: grid;
-  aspect-ratio: 1.42;
+  aspect-ratio: 800 / 342;
   place-items: center;
   overflow: hidden;
   border-bottom: 1px solid #ffffff12;
@@ -607,94 +605,25 @@ button:focus-visible {
 }
 
 .art-portfolio img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  clip-path: inset(0 0 11.4% 0);
   transition: transform 400ms ease;
 }
 
-.art-study {
+.art-jobs {
   background:
     radial-gradient(ellipse at 50% 48%, #167da742, transparent 66%),
-    linear-gradient(145deg, #0c1921, #08121b);
+    #080d14;
 }
 
-.jobs-preview {
-  display: flex;
-  width: 76%;
-  flex-direction: column;
-  gap: 8px;
-  padding: 13px;
-  border: 1px solid #8dc9d736;
-  border-radius: 9px;
-  background: linear-gradient(145deg, #101e29f2, #09141cf2);
-  box-shadow: 0 18px 44px #0008;
-  transform: perspective(700px) rotateY(-5deg) rotateX(2deg);
-  transition:
-    transform 300ms ease,
-    border-color 300ms ease,
-    box-shadow 300ms ease;
-}
-
-.preview-topline,
-.chat-topline {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  color: #9db3c1;
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.06em;
-}
-
-.preview-topline > span:first-child {
-  width: 6px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: var(--blue);
-  box-shadow: 0 0 10px #18baff9c;
-}
-
-.job-preview {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 4px 8px;
-  padding: 9px 10px;
-  border: 1px solid #ffffff12;
-  border-radius: 5px;
-  background: #142330;
-}
-
-.job-label {
-  grid-column: 1 / -1;
-  color: #62c9eb;
-  font-family: var(--mono);
-  font-size: 8px;
-  letter-spacing: 0.04em;
-}
-
-.job-preview b {
-  color: #e4edf3;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.job-meta {
-  grid-column: 1 / -1;
-  color: #8294a1;
-  font-size: 10px;
-}
-
-.job-meta i {
-  padding-inline: 3px;
-  color: var(--blue-soft);
-  font-style: normal;
-}
-
-.job-preview-secondary {
-  opacity: 0.65;
-  transform: translateX(8px);
+.art-jobs img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
 }
 
 .art-color {
@@ -703,80 +632,13 @@ button:focus-visible {
     linear-gradient(145deg, #0d1820, #08121b);
 }
 
-.chat-preview {
-  display: flex;
-  width: 76%;
-  min-height: 73%;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 13px;
-  border: 1px solid #8dc9d736;
-  border-radius: 9px;
-  background: linear-gradient(145deg, #101e29f2, #09141cf2);
-  box-shadow: 0 18px 44px #0008;
-  transform: perspective(700px) rotateY(5deg) rotateX(2deg);
-  transition:
-    transform 300ms ease,
-    border-color 300ms ease,
-    box-shadow 300ms ease;
-}
-
-.chat-topline {
+.art-color img {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  padding-bottom: 9px;
-  border-bottom: 1px solid #ffffff16;
-}
-
-.chat-indicator {
-  width: 7px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: #43cfaa;
-  box-shadow: 0 0 9px #43cfaa85;
-}
-
-.chat-message {
-  max-width: 88%;
-  padding: 7px 9px;
-  border: 1px solid #ffffff12;
-  border-radius: 7px;
-  color: #c5d1d9;
-  font-size: 11px;
-  line-height: 1.5;
-}
-
-.chat-user {
-  align-self: flex-end;
-  background: #12334a;
-}
-
-.chat-response {
-  background: #111e29;
-}
-
-.chat-input {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: auto;
-  padding: 7px 9px;
-  border: 1px solid #ffffff1b;
-  border-radius: 6px;
-  color: #728491;
-  font-size: 9px;
-}
-
-.chat-input span {
-  display: grid;
-  width: 17px;
-  aspect-ratio: 1;
-  place-items: center;
-  border-radius: 5px;
-  background: var(--blue);
-  color: #07101b;
-  font-size: 11px;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .art-index {
@@ -932,18 +794,6 @@ button:focus-visible {
     transform: scale(1.06);
   }
 
-  .project-card:hover .jobs-preview {
-    border-color: #8dc9d77d;
-    box-shadow: 0 22px 50px #000a;
-    transform: perspective(700px) rotateY(0) rotateX(0) scale(1.025);
-  }
-
-  .project-card:hover .chat-preview {
-    border-color: #8dc9d77d;
-    box-shadow: 0 22px 50px #000a;
-    transform: perspective(700px) rotateY(0) rotateX(0) scale(1.025);
-  }
-
   .project-card:hover .project-link {
     border-color: #18baff67;
     background-color: #18baff12;
@@ -958,8 +808,6 @@ button:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .project-card,
   .art-portfolio img,
-  .jobs-preview,
-  .chat-preview,
   .project-link,
   .project-link span {
     transition: none;
@@ -1003,7 +851,6 @@ button:focus-visible {
 
 .contact-copy h2 span {
   color: var(--blue);
-  text-shadow: 0 0 34px #18baff28;
 }
 
 .contact-copy > p:not(.eyebrow) {
@@ -1200,13 +1047,18 @@ button:focus-visible {
   }
 
   .about-layout {
-    grid-template-columns: minmax(0, 0.6fr) minmax(0, 1.4fr);
-    gap: 20px;
-    padding-inline: 6%;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    align-items: center;
+    gap: 14px;
+    padding: 27px 6% 10px;
   }
 
   .portrait {
     width: 100%;
+  }
+
+  .about-copy h2 {
+    font-size: clamp(30px, 7vw, 46px);
   }
 
   .project-grid {
@@ -1231,26 +1083,9 @@ button:focus-visible {
   }
 }
 
-@media (max-width: 1100px) {
-  .contact-layout {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-
-  .contact-visual {
-    width: min(100%, 760px);
-    min-height: 280px;
-    justify-self: center;
-  }
-}
-
-@media (max-width: 560px) {
+@media (max-width: 680px) {
   html {
     scroll-padding-top: 66px;
-  }
-
-  .page {
-    width: 100%;
   }
 
   .topbar {
@@ -1260,15 +1095,10 @@ button:focus-visible {
     padding-inline: 15px;
   }
 
-  .back-to-top {
-    right: 16px;
-    bottom: 16px;
-  }
-
   .topbar-year {
     grid-column: 4;
     grid-row: 1;
-    font-size: 7px;
+    font-size: 8px;
   }
 
   .theme-toggle {
@@ -1344,6 +1174,30 @@ button:focus-visible {
   .panel {
     scroll-margin-top: 72px;
   }
+}
+
+@media (max-width: 1100px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .contact-visual {
+    width: min(100%, 760px);
+    min-height: 280px;
+    justify-self: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .page {
+    width: 100%;
+  }
+
+  .back-to-top {
+    right: 16px;
+    bottom: 16px;
+  }
 
   .hero {
     min-height: clamp(520px, calc(100svh - 60px), 700px);
@@ -1360,12 +1214,6 @@ button:focus-visible {
     min-height: 40px;
     padding-inline: 15px;
     font-size: 8px;
-  }
-
-  .about-layout {
-    grid-template-columns: 1fr;
-    gap: 30px;
-    padding: 27px 8% 10px;
   }
 
   .about-details {
@@ -1386,13 +1234,13 @@ button:focus-visible {
     max-width: 280px;
   }
 
-  .portrait {
-    width: min(68%, 230px);
-  }
-
   .about-copy h2,
   .projects-heading h2 {
     font-size: 52px;
+  }
+
+  .about-copy h2 {
+    font-size: clamp(34px, 9vw, 46px);
   }
 
   .projects-heading {
@@ -1598,7 +1446,7 @@ button:focus-visible {
   color: #526574;
 }
 
-@media (max-width: 560px) {
+@media (max-width: 680px) {
   :root[data-theme="light"] .menu-toggle {
     border-color: #9bb2c0;
     background: #ffffff;
