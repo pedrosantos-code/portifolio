@@ -6,6 +6,7 @@ const navigationLinks = document.querySelectorAll<HTMLAnchorElement>(".navigatio
 const pageSections = document.querySelectorAll<HTMLElement>("main section[id]");
 const yearElements = document.querySelectorAll<HTMLElement>("#header-year");
 const contactGlobe = document.querySelector<HTMLElement>(".contact-globe");
+const heroTitle = document.querySelector<HTMLElement>(".hero h1");
 const themeToggle = document.querySelector<HTMLButtonElement>(".theme-toggle");
 const themeColorMeta = document.querySelector<HTMLMetaElement>("#theme-color");
 const faviconLink = document.querySelector<HTMLLinkElement>("#favicon");
@@ -102,6 +103,26 @@ backToTop?.addEventListener("click", () => {
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
 });
+
+if (
+  heroTitle &&
+  window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
+  !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+) {
+  heroTitle.addEventListener("pointermove", (event: PointerEvent) => {
+    const bounds = heroTitle.getBoundingClientRect();
+    const horizontal = (event.clientX - bounds.left) / bounds.width - 0.5;
+    const vertical = (event.clientY - bounds.top) / bounds.height - 0.5;
+
+    heroTitle.style.setProperty("--title-rotate-y", `${horizontal * 2}deg`);
+    heroTitle.style.setProperty("--title-rotate-x", `${vertical * -2}deg`);
+  });
+
+  heroTitle.addEventListener("pointerleave", () => {
+    heroTitle.style.removeProperty("--title-rotate-x");
+    heroTitle.style.removeProperty("--title-rotate-y");
+  });
+}
 
 if (
   contactGlobe &&

@@ -302,6 +302,10 @@ button:focus-visible {
   font-weight: 900;
   letter-spacing: -0.075em;
   line-height: 0.82;
+  transform: perspective(1000px)
+    rotateX(var(--title-rotate-x, 0deg))
+    rotateY(var(--title-rotate-y, 0deg));
+  transition: transform 220ms ease-out;
   white-space: nowrap;
   text-transform: uppercase;
 }
@@ -320,6 +324,7 @@ button:focus-visible {
   position: relative;
   display: inline-block;
   color: var(--blue);
+  text-shadow: 0 0 34px #18baff28;
 }
 
 .projects-heading h2 span {
@@ -792,9 +797,18 @@ button:focus-visible {
   padding: 19px 19px 17px;
 }
 
-.project-type {
-  display: inline-flex;
+.project-techs {
+  display: flex;
+  min-height: 46px;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 6px;
   margin: 0 0 11px;
+  padding: 0;
+  list-style: none;
+}
+
+.project-techs li {
   padding: 5px 8px;
   border: 1px solid #18baff38;
   border-radius: 999px;
@@ -803,6 +817,7 @@ button:focus-visible {
   font-family: var(--mono);
   font-size: 8px;
   letter-spacing: 0.09em;
+  line-height: 1;
 }
 
 .project-info h3 {
@@ -816,10 +831,12 @@ button:focus-visible {
 }
 
 .project-description {
-  margin: 10px 0 18px;
+  margin: 6px 0 18px;
   color: #98a3af;
   font-size: 12px;
   line-height: 1.7;
+  text-align: justify;
+  text-align-last: left;
 }
 
 .project-link {
@@ -888,8 +905,12 @@ button:focus-visible {
   }
 
   @keyframes hero-title-sweep {
+    from {
+      background-position: 160% 0;
+    }
+
     to {
-      background-position: 0 0;
+      background-position: -120% 0;
     }
   }
 
@@ -1513,7 +1534,7 @@ button:focus-visible {
   color: #172a38;
 }
 
-:root[data-theme="light"] .project-type {
+:root[data-theme="light"] .project-techs li {
   border-color: #087fae46;
   background: #087fae0c;
   color: #075f80;
