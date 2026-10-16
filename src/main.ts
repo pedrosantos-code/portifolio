@@ -9,6 +9,9 @@ const contactGlobe = document.querySelector<HTMLElement>(".contact-globe");
 const themeToggle = document.querySelector<HTMLButtonElement>(".theme-toggle");
 const themeColorMeta = document.querySelector<HTMLMetaElement>("#theme-color");
 const faviconLink = document.querySelector<HTMLLinkElement>("#favicon");
+const readingProgress = document.querySelector<HTMLElement>(".reading-progress");
+const readingProgressBar = document.querySelector<HTMLElement>(".reading-progress-bar");
+const backToTop = document.querySelector<HTMLButtonElement>(".back-to-top");
 const themeStorageKey = "portfolio-theme";
 
 const applyTheme = (theme: "dark" | "light"): void => {
@@ -74,6 +77,30 @@ document.addEventListener("visibilitychange", () => {
   if (document.visibilityState === "visible") {
     updateYear();
   }
+});
+
+const updateScrollUI = (): void => {
+  const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress =
+    scrollableHeight > 0
+      ? Math.min(100, Math.max(0, (window.scrollY / scrollableHeight) * 100))
+      : 0;
+
+  if (readingProgress && readingProgressBar) {
+    readingProgress.setAttribute("aria-valuenow", String(Math.round(progress)));
+    readingProgressBar.style.transform = `scaleX(${progress / 100})`;
+  }
+
+  backToTop?.toggleAttribute("hidden", window.scrollY < 400);
+};
+
+window.addEventListener("scroll", updateScrollUI, { passive: true });
+window.addEventListener("resize", updateScrollUI);
+updateScrollUI();
+
+backToTop?.addEventListener("click", () => {
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
 });
 
 if (

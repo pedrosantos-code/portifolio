@@ -94,6 +94,57 @@ button:focus-visible {
   backdrop-filter: blur(16px);
 }
 
+.reading-progress {
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 3px;
+  pointer-events: none;
+}
+
+.reading-progress-bar {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--blue);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--blue), transparent 35%);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.back-to-top {
+  position: fixed;
+  z-index: 15;
+  right: 24px;
+  bottom: 24px;
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid #367c98;
+  border-radius: 50%;
+  background: #0b1d28e8;
+  color: #d8eef5;
+  cursor: pointer;
+  font-size: 22px;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    color 160ms ease;
+}
+
+.back-to-top[hidden] {
+  display: none;
+}
+
+.back-to-top:hover {
+  border-color: var(--blue);
+  background: #0b2635;
+  color: #ffffff;
+}
+
 .brand {
   display: inline-flex;
   width: fit-content;
@@ -122,6 +173,7 @@ button:focus-visible {
 }
 
 .navigation a {
+  position: relative;
   padding: 8px 13px;
   border: 1px solid transparent;
   border-radius: 20px;
@@ -130,17 +182,22 @@ button:focus-visible {
   font-size: 10px;
   letter-spacing: 0.035em;
   text-transform: uppercase;
-  transition:
-    color 160ms ease,
-    border-color 160ms ease,
-    background 160ms ease;
+  transition: color 160ms ease;
 }
 
 .navigation a:hover,
 .navigation a.is-active {
-  border-color: #2c8db9;
-  background: #0a2634;
   color: #bfeeff;
+}
+
+.navigation a.is-active::after {
+  position: absolute;
+  right: 13px;
+  bottom: 3px;
+  left: 13px;
+  height: 1px;
+  background: var(--blue);
+  content: "";
 }
 
 .theme-toggle {
@@ -328,6 +385,11 @@ button:focus-visible {
   line-height: 1.85;
 }
 
+.about-text {
+  text-align: justify;
+  text-align-last: left;
+}
+
 .about-details {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -346,12 +408,14 @@ button:focus-visible {
 }
 
 .detail-block h3 {
+  min-height: 2.5em;
   margin: 0 0 10px;
   color: var(--blue);
   font-family: var(--mono);
   font-size: 9px;
   font-weight: 500;
   letter-spacing: 0.24em;
+  line-height: 1.25;
   text-transform: uppercase;
 }
 
@@ -477,6 +541,8 @@ button:focus-visible {
   color: #97a2af;
   font-size: 13px;
   line-height: 1.7;
+  text-align: justify;
+  text-align-last: left;
 }
 
 .project-grid {
@@ -877,6 +943,8 @@ button:focus-visible {
 .contact-copy > p:not(.eyebrow) {
   max-width: 390px;
   margin: 18px 0;
+  text-align: justify;
+  text-align-last: left;
 }
 
 .contact-actions {
@@ -1125,6 +1193,11 @@ button:focus-visible {
     padding-inline: 15px;
   }
 
+  .back-to-top {
+    right: 16px;
+    bottom: 16px;
+  }
+
   .topbar-year {
     grid-column: 4;
     grid-row: 1;
@@ -1195,9 +1268,10 @@ button:focus-visible {
     border-radius: 0;
   }
 
-  .navigation a:hover,
-  .navigation a.is-active {
-    background: #0a2634;
+  .navigation a.is-active::after {
+    right: 12px;
+    bottom: 5px;
+    left: 12px;
   }
 
   .panel {
@@ -1230,6 +1304,10 @@ button:focus-visible {
   .about-details {
     grid-template-columns: minmax(0, 1fr);
     gap: 0;
+  }
+
+  .detail-block h3 {
+    min-height: 0;
   }
 
   .detail-block:last-child {
@@ -1328,14 +1406,24 @@ button:focus-visible {
   background: #f3f7fae8;
 }
 
+:root[data-theme="light"] .back-to-top {
+  border-color: #087fae7a;
+  background: #e9f5f9ed;
+  color: #17384b;
+}
+
+:root[data-theme="light"] .back-to-top:hover {
+  border-color: #087fae;
+  background: #d9eff7;
+  color: #102d3d;
+}
+
 :root[data-theme="light"] .navigation a {
   color: #536574;
 }
 
 :root[data-theme="light"] .navigation a:hover,
 :root[data-theme="light"] .navigation a.is-active {
-  border-color: #087fae66;
-  background: #dceff6;
   color: #075d80;
 }
 

@@ -12,6 +12,16 @@
     <title>Pedro Santos — Portfólio</title>
   </head>
   <body>
+    <div
+      class="reading-progress"
+      role="progressbar"
+      aria-label="Progresso de leitura"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-valuenow="0"
+    >
+      <span class="reading-progress-bar"></span>
+    </div>
     <div class="page">
       <header class="topbar">
         <a class="brand" href="#inicio" aria-label="Pedro Santos, início">
@@ -82,12 +92,16 @@
                   <h3>LINGUAGENS</h3>
                   <ul class="skill-list">
                     <li data-level="intermediario">
-                      <div class="skill-heading"><span>JavaScript</span><span>Intermediário</span></div>
-                      <div class="skill-meter" role="meter" aria-label="JavaScript" aria-valuemin="1" aria-valuemax="3" aria-valuenow="2" aria-valuetext="Intermediário"></div>
-                    </li>
-                    <li data-level="intermediario">
                       <div class="skill-heading"><span>Python</span><span>Intermediário</span></div>
                       <div class="skill-meter" role="meter" aria-label="Python" aria-valuemin="1" aria-valuemax="3" aria-valuenow="2" aria-valuetext="Intermediário"></div>
+                    </li>
+                    <li data-level="intermediario">
+                      <div class="skill-heading"><span>SQL</span><span>Intermediário</span></div>
+                      <div class="skill-meter" role="meter" aria-label="SQL" aria-valuemin="1" aria-valuemax="3" aria-valuenow="2" aria-valuetext="Intermediário"></div>
+                    </li>
+                    <li data-level="intermediario">
+                      <div class="skill-heading"><span>JavaScript</span><span>Intermediário</span></div>
+                      <div class="skill-meter" role="meter" aria-label="JavaScript" aria-valuemin="1" aria-valuemax="3" aria-valuenow="2" aria-valuetext="Intermediário"></div>
                     </li>
                     <li data-level="avancado">
                       <div class="skill-heading"><span>HTML5</span><span>Avançado</span></div>
@@ -97,10 +111,6 @@
                       <div class="skill-heading"><span>CSS3</span><span>Avançado</span></div>
                       <div class="skill-meter" role="meter" aria-label="CSS3" aria-valuemin="1" aria-valuemax="3" aria-valuenow="3" aria-valuetext="Avançado"></div>
                     </li>
-                    <li data-level="intermediario">
-                      <div class="skill-heading"><span>SQL</span><span>Intermediário</span></div>
-                      <div class="skill-meter" role="meter" aria-label="SQL" aria-valuemin="1" aria-valuemax="3" aria-valuenow="2" aria-valuetext="Intermediário"></div>
-                    </li>
                   </ul>
                 </div>
                 <div class="detail-block">
@@ -109,6 +119,10 @@
                     <li data-level="intermediario">
                       <div class="skill-heading"><span>Power BI</span><span>Intermediário</span></div>
                       <div class="skill-meter" role="meter" aria-label="Power BI" aria-valuemin="1" aria-valuemax="3" aria-valuenow="2" aria-valuetext="Intermediário"></div>
+                    </li>
+                    <li data-level="avancado">
+                      <div class="skill-heading"><span>Excel</span><span>Avançado</span></div>
+                      <div class="skill-meter" role="meter" aria-label="Excel" aria-valuemin="1" aria-valuemax="3" aria-valuenow="3" aria-valuetext="Avançado"></div>
                     </li>
                     <li data-level="iniciante">
                       <div class="skill-heading"><span>Docker</span><span>Iniciante</span></div>
@@ -121,10 +135,6 @@
                     <li data-level="avancado">
                       <div class="skill-heading"><span>VS Code</span><span>Avançado</span></div>
                       <div class="skill-meter" role="meter" aria-label="VS Code" aria-valuemin="1" aria-valuemax="3" aria-valuenow="3" aria-valuetext="Avançado"></div>
-                    </li>
-                    <li data-level="avancado">
-                      <div class="skill-heading"><span>Excel</span><span>Avançado</span></div>
-                      <div class="skill-meter" role="meter" aria-label="Excel" aria-valuemin="1" aria-valuemax="3" aria-valuenow="3" aria-valuetext="Avançado"></div>
                     </li>
                   </ul>
                 </div>
@@ -290,8 +300,9 @@
               <p class="eyebrow">O PRÓXIMO PASSO COMEÇA COM UMA CONVERSA</p>
               <h2 id="contact-title">Obrigado<br />por chegar <span>até aqui.</span></h2>
               <p>
-                Quer acompanhar meus projetos ou trocar uma ideia? Me encontre no GitHub ou
-                LinkedIn.
+                Conheça meus projetos no GitHub, acompanhe minha trajetória no LinkedIn e
+                consulte meu currículo em PDF. Para conversar sobre oportunidades, entre em
+                contato por e-mail.
               </p>
               <div class="contact-actions">
                 <a
@@ -309,6 +320,22 @@
                   rel="noopener noreferrer"
                 >
                   VISITAR MEU LINKEDIN <span aria-hidden="true">↗</span>
+                </a>
+                <a
+                  class="contact-button"
+                  href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=ppedropds%40gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  E-MAIL <span aria-hidden="true">↗</span>
+                </a>
+                <a
+                  class="contact-button"
+                  href="/curriculo-pedro-pereira-dos-santos.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  VER CURRÍCULO <span aria-hidden="true">↗</span>
                 </a>
               </div>
             </div>
@@ -330,6 +357,9 @@
         </section>
       </main>
     </div>
+    <button class="back-to-top" type="button" aria-label="Voltar ao topo" hidden>
+      <span aria-hidden="true">↑</span>
+    </button>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
