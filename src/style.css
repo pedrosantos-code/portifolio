@@ -385,12 +385,79 @@ button:focus-visible {
   aspect-ratio: 0.667;
   object-fit: cover;
   object-position: center top;
+  transition:
+    opacity 350ms ease,
+    transform 500ms cubic-bezier(0.2, 0.7, 0.2, 1);
   -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 82%, transparent 100%);
   mask-image: linear-gradient(to bottom, #000 0%, #000 82%, transparent 100%);
 }
 
+.is-narrower-than-initial .portrait {
+  display: none;
+  opacity: 0;
+  transform: translateY(-18px) scale(0.98);
+}
+
 .about-copy {
+  position: relative;
   max-width: 640px;
+}
+
+.front-portrait {
+  display: none;
+  width: clamp(72px, 24vw, 190px);
+  height: auto;
+  margin: 0 0 4px;
+  object-fit: contain;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 82%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 82%, transparent 100%);
+  opacity: 0;
+  transform: translateY(24px) scale(0.94);
+  transform-origin: center bottom;
+  transition:
+    opacity 350ms ease,
+    transform 500ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.is-narrower-than-initial .front-portrait {
+  display: block;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.is-narrower-than-initial .about-layout {
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+}
+
+.is-narrower-than-initial .about-copy {
+  display: flex;
+  width: min(100%, 640px);
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.is-narrower-than-initial .about-text {
+  text-align: center;
+}
+
+.is-narrower-than-initial .about-details {
+  width: 100%;
+}
+
+.is-narrower-than-initial .detail-block h3 {
+  text-align: center;
+}
+
+.is-narrower-than-initial .skill-list {
+  width: min(100%, 280px);
+  margin-inline: auto;
+}
+
+.is-narrower-than-initial .skill-heading {
+  justify-content: center;
 }
 
 .about-copy h2 {
@@ -1078,8 +1145,12 @@ button:focus-visible {
     padding: 27px 6% 10px;
   }
 
-  .portrait {
-    width: 100%;
+  .is-narrower-than-initial .about-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .is-narrower-than-initial .portrait {
+    display: none;
   }
 
   .about-copy h2 {

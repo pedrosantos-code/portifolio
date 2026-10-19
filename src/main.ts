@@ -1,5 +1,25 @@
 import "./style.css";
 
+const initialViewportWidthStorageKey = "portfolio-initial-viewport-width";
+let initialViewportWidth = window.innerWidth;
+try {
+  const savedViewportWidth = window.sessionStorage.getItem(initialViewportWidthStorageKey);
+  if (savedViewportWidth === null) {
+    window.sessionStorage.setItem(
+      initialViewportWidthStorageKey,
+      String(initialViewportWidth),
+    );
+  } else {
+    const parsedViewportWidth = Number(savedViewportWidth);
+    if (!Number.isFinite(parsedViewportWidth) || parsedViewportWidth <= 0) {
+      throw new Error("A largura inicial da janela salva não é válida.");
+    }
+    initialViewportWidth = parsedViewportWidth;
+  }
+} catch (error) {
+  console.error("Não foi possível preservar a largura inicial da janela.", error);
+}
+
 const menuToggle = document.querySelector<HTMLButtonElement>(".menu-toggle");
 const navigation = document.querySelector<HTMLElement>("#navigation");
 const navigationLinks = document.querySelectorAll<HTMLAnchorElement>(".navigation a");
@@ -16,6 +36,13 @@ const backToTop = document.querySelector<HTMLButtonElement>(".back-to-top");
 const skillDetails = document.querySelector<HTMLElement>(".about-details");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const themeStorageKey = "portfolio-theme";
+
+window.addEventListener("resize", () => {
+  document.documentElement.classList.toggle(
+    "is-narrower-than-initial",
+    window.innerWidth < initialViewportWidth,
+  );
+});
 
 const applyTheme = (theme: "dark" | "light"): void => {
   document.documentElement.dataset.theme = theme;
