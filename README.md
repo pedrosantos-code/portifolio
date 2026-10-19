@@ -1,3 +1,5 @@
+### link do portifólio no ar: https://pedro-ps-portfolio.netlify.app/
+
 # Portfólio pessoal
 
 Portfólio web construído com TypeScript, HTML e CSS usando Vite.
