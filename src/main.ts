@@ -36,6 +36,12 @@ const backToTop = document.querySelector<HTMLButtonElement>(".back-to-top");
 const skillDetails = document.querySelector<HTMLElement>(".about-details");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const themeStorageKey = "portfolio-theme";
+let titleJoinProgress = 0;
+let titleTargetJoinProgress = 0;
+let titleJoinVelocity = 0;
+let titleLastFrameTime = 0;
+let titleAnimationFrame = 0;
+let previousScrollY = window.scrollY;
 
 window.addEventListener("resize", () => {
   document.documentElement.classList.toggle(
@@ -100,6 +106,73 @@ const scheduleYearUpdate = (): void => {
   }, nextYear.getTime() - now.getTime() + 100);
 };
 
+const animateHeroTitle = (timestamp: number): void => {
+  if (!heroTitle || prefersReducedMotion.matches) {
+    titleAnimationFrame = 0;
+    return;
+  }
+
+  const deltaTime =
+    titleLastFrameTime === 0
+      ? 1 / 60
+      : Math.min((timestamp - titleLastFrameTime) / 1000, 1 / 30);
+  titleLastFrameTime = timestamp;
+
+  const acceleration =
+    (titleTargetJoinProgress - titleJoinProgress) * 36 - titleJoinVelocity * 11.5;
+  titleJoinVelocity += acceleration * deltaTime;
+  titleJoinProgress += titleJoinVelocity * deltaTime;
+
+  if (
+    Math.abs(titleTargetJoinProgress - titleJoinProgress) < 0.001 &&
+    Math.abs(titleJoinVelocity) < 0.01
+  ) {
+    titleJoinProgress = titleTargetJoinProgress;
+    titleJoinVelocity = 0;
+  }
+
+  titleJoinProgress = Math.min(1, Math.max(0, titleJoinProgress));
+  const visualProgress = titleJoinProgress;
+  const availableSeparation = Math.max(
+    0,
+    ((window.innerWidth - heroTitle.offsetWidth) / 2 - 16) * 0.7,
+  );
+  const separation =
+    (1 - visualProgress) *
+    Math.min(110, window.innerWidth * 0.12, availableSeparation);
+  const unsettledProgress = 1 - visualProgress;
+  const friction = Math.min(1, Math.abs(titleJoinVelocity) / 0.55);
+
+  heroTitle.style.setProperty("--title-split-x", `${separation}px`);
+  heroTitle.style.setProperty("--title-split-y", `${8 * unsettledProgress}px`);
+  heroTitle.style.setProperty("--title-depth", `${-90 * unsettledProgress}px`);
+  heroTitle.style.setProperty("--title-rotation", `${16 * unsettledProgress}deg`);
+  heroTitle.style.setProperty("--title-roll", `${4 * unsettledProgress}deg`);
+  heroTitle.style.setProperty("--title-friction", friction.toFixed(3));
+  heroTitle.classList.toggle("is-dragging", friction > 0.04);
+
+  if (titleJoinVelocity !== 0 || titleJoinProgress !== titleTargetJoinProgress) {
+    titleAnimationFrame = window.requestAnimationFrame(animateHeroTitle);
+  } else {
+    titleAnimationFrame = 0;
+    titleLastFrameTime = 0;
+  }
+};
+
+const updateHeroTitle = (): void => {
+  if (!heroTitle || prefersReducedMotion.matches) {
+    return;
+  }
+
+  const joinDistance = Math.min(260, window.innerHeight * 0.35);
+  titleTargetJoinProgress = Math.min(1, Math.max(0, window.scrollY / joinDistance));
+
+  if (titleAnimationFrame === 0) {
+    titleLastFrameTime = 0;
+    titleAnimationFrame = window.requestAnimationFrame(animateHeroTitle);
+  }
+};
+
 updateYear();
 scheduleYearUpdate();
 window.addEventListener("focus", updateYear);
@@ -110,6 +183,10 @@ document.addEventListener("visibilitychange", () => {
 });
 
 const updateScrollUI = (): void => {
+  const scrollingDown = window.scrollY > previousScrollY;
+  previousScrollY = window.scrollY;
+  heroTitle?.classList.toggle("is-scrolling-down", scrollingDown);
+
   const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
   const progress =
     scrollableHeight > 0
@@ -121,22 +198,7 @@ const updateScrollUI = (): void => {
     readingProgressBar.style.transform = `scaleX(${progress / 100})`;
   }
 
-  if (heroTitle && !prefersReducedMotion.matches) {
-    const joinDistance = Math.min(260, window.innerHeight * 0.35);
-    const joinProgress = Math.min(1, Math.max(0, window.scrollY / joinDistance));
-    const availableSeparation = Math.max(
-      0,
-      ((window.innerWidth - heroTitle.offsetWidth) / 2 - 16) * 0.7,
-    );
-    const separation =
-      (1 - joinProgress) *
-      Math.min(110, window.innerWidth * 0.12, availableSeparation);
-
-    heroTitle.style.setProperty("--title-split-x", `${separation}px`);
-    heroTitle.style.setProperty("--title-depth", `${-110 * (1 - joinProgress)}px`);
-    heroTitle.style.setProperty("--title-rotation", `${18 * (1 - joinProgress)}deg`);
-  }
-
+  updateHeroTitle();
   backToTop?.toggleAttribute("hidden", window.scrollY < 400);
 };
 
@@ -286,10 +348,8 @@ if (
   !prefersReducedMotion.matches
 ) {
   const revealTargets = document.querySelectorAll<HTMLElement>(
-    ".hero-content, " +
-      ".about .section-topline, .about-layout, .projects .section-topline, " +
-      ".projects-heading, .project-card, .projects-note, .contact .section-topline, " +
-      ".contact-layout, .page-footer",
+    ".hero-content, .about-layout, .projects-heading, .project-card, " +
+      ".projects-note, .contact-layout, .page-footer",
   );
 
   const revealObserver = new IntersectionObserver(

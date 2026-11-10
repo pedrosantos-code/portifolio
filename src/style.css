@@ -244,7 +244,7 @@ button:focus-visible {
   overflow: clip;
   border: 0;
   background: transparent;
-  scroll-margin-top: 82px;
+  scroll-margin-top: 0;
 }
 
 .panel + .panel {
@@ -312,13 +312,143 @@ button:focus-visible {
 
 .hero h1 > span:first-child,
 .hero-title-blue {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
   transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.hero-title-smoke {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  display: block;
+  width: clamp(36px, 4vw, 58px);
+  height: 116%;
+  pointer-events: none;
+}
+
+.hero-title-smoke::before,
+.hero-title-smoke::after {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hero-title-smoke::before {
+  inset: 0;
+  background:
+    radial-gradient(ellipse 42% 13% at 50% 94%, var(--smoke-color) 0%, transparent 100%),
+    radial-gradient(ellipse 34% 17% at 57% 75%, var(--smoke-color) 0%, transparent 100%),
+    radial-gradient(ellipse 38% 18% at 41% 55%, var(--smoke-color) 0%, transparent 100%),
+    radial-gradient(ellipse 31% 18% at 57% 35%, var(--smoke-color) 0%, transparent 100%),
+    radial-gradient(ellipse 25% 16% at 43% 15%, var(--smoke-color) 0%, transparent 100%);
+  filter: blur(8px);
+  transform-origin: 50% 100%;
+}
+
+.hero-title-smoke::after {
+  right: 18%;
+  bottom: 0;
+  left: 18%;
+  height: 12%;
+  background: radial-gradient(ellipse at 50% 100%, var(--smoke-color), transparent 80%);
+  filter: blur(5px);
+}
+
+.hero-title-smoke-left {
+  left: -0.08em;
+  --smoke-color: rgb(188 198 205 / 48%);
+}
+
+.hero-title-smoke-right {
+  right: -0.08em;
+  --smoke-color: rgb(163 183 193 / 44%);
+}
+
+.hero h1.is-scrolling-down.is-dragging .hero-title-smoke-left::before {
+  animation: title-smoke-rise-left 1350ms ease-out infinite;
+}
+
+.hero h1.is-scrolling-down.is-dragging .hero-title-smoke-right::before {
+  animation: title-smoke-rise-right 1350ms ease-out 240ms infinite;
+}
+
+.hero h1.is-scrolling-down.is-dragging .hero-title-smoke::after {
+  animation: title-smoke-source 1350ms ease-in-out infinite;
+}
+
+@keyframes title-smoke-source {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.65, 0.8);
+  }
+
+  28%,
+  62% {
+    opacity: calc(var(--title-friction, 0) * 0.24);
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes title-smoke-rise-left {
+  0% {
+    opacity: 0;
+    transform: rotate(-2deg) scale(0.5, 0.08);
+  }
+
+  16% {
+    opacity: calc(var(--title-friction, 0) * 0.72);
+    transform: rotate(-1deg) scale(0.68, 0.52);
+  }
+
+  62% {
+    opacity: calc(var(--title-friction, 0) * 0.48);
+    transform: rotate(3deg) scale(0.9, 0.88);
+  }
+
+  100% {
+    opacity: 0;
+    transform: rotate(6deg) scale(1.08, 1.08);
+  }
+}
+
+@keyframes title-smoke-rise-right {
+  0% {
+    opacity: 0;
+    transform: rotate(2deg) scale(0.5, 0.08);
+  }
+
+  16% {
+    opacity: calc(var(--title-friction, 0) * 0.72);
+    transform: rotate(1deg) scale(0.68, 0.52);
+  }
+
+  62% {
+    opacity: calc(var(--title-friction, 0) * 0.48);
+    transform: rotate(-3deg) scale(0.9, 0.88);
+  }
+
+  100% {
+    opacity: 0;
+    transform: rotate(-6deg) scale(1.08, 1.08);
+  }
 }
 
 .hero h1 > span:first-child {
   transform:
-    translate3d(calc(var(--title-split-x, 0px) * -1), 0, var(--title-depth, 0px))
-    rotateY(var(--title-rotation, 0deg));
+    translate3d(
+      calc(var(--title-split-x, 0px) * -1),
+      calc(var(--title-split-y, 0px) * -1),
+      var(--title-depth, 0px)
+    )
+    rotateY(var(--title-rotation, 0deg))
+    rotateZ(calc(var(--title-roll, 0deg) * -1));
   transform-origin: right center;
 }
 
@@ -334,9 +464,10 @@ button:focus-visible {
 
 .hero-focus {
   max-width: 100%;
-  margin: 11px 0 0;
-  color: #aebbc8;
-  font-size: clamp(12px, 1.25vw, 15px);
+  margin: 13px 0 0;
+  color: #c0cbd5;
+  font-size: clamp(14px, 1.35vw, 16px);
+  font-weight: 500;
   line-height: 1.5;
   text-align: center;
   text-wrap: balance;
@@ -349,21 +480,18 @@ button:focus-visible {
   margin-right: -0.08em;
   color: var(--blue);
   transform:
-    translate3d(var(--title-split-x, 0px), 0, var(--title-depth, 0px))
-    rotateY(calc(var(--title-rotation, 0deg) * -1));
+    translate3d(
+      var(--title-split-x, 0px),
+      var(--title-split-y, 0px),
+      var(--title-depth, 0px)
+    )
+    rotateY(calc(var(--title-rotation, 0deg) * -1))
+    rotateZ(var(--title-roll, 0deg));
   transform-origin: left center;
 }
 
 .projects-heading h2 span {
   color: var(--blue);
-}
-
-.section-topline {
-  display: none;
-}
-
-.section-marker {
-  color: #546171;
 }
 
 .about {
@@ -608,6 +736,7 @@ button:focus-visible {
   align-items: end;
   justify-content: space-between;
   gap: 30px;
+  margin-top: 26px;
   padding: 0 max(7%, calc((100vw - 1180px) / 2)) 38px;
 }
 
@@ -652,8 +781,7 @@ button:focus-visible {
   color: #97a2af;
   font-size: 14px;
   line-height: 1.7;
-  text-align: justify;
-  text-align-last: left;
+  text-align: left;
 }
 
 .project-grid {
@@ -753,7 +881,7 @@ button:focus-visible {
 
 .project-info {
   display: flex;
-  min-height: 205px;
+  min-height: 220px;
   flex: 1;
   flex-direction: column;
   align-items: flex-start;
@@ -797,18 +925,18 @@ button:focus-visible {
   color: #aeb8c5;
   font-size: 14px;
   line-height: 1.7;
-  text-align: justify;
-  text-align-last: left;
+  text-align: left;
 }
 
 .project-link {
   display: inline-flex;
-  width: 100%;
+  min-width: 0;
   min-height: 40px;
+  flex: 1;
   align-items: center;
-  justify-content: space-between;
-  margin-top: auto;
-  padding: 0 12px;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 9px;
   border: 1px solid #a9d4e022;
   border-radius: 7px;
   background: #ffffff04;
@@ -821,6 +949,18 @@ button:focus-visible {
     border-color 180ms ease,
     background-color 180ms ease,
     color 180ms ease;
+}
+
+.project-actions {
+  display: flex;
+  width: 100%;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.project-link-primary {
+  border-color: #18baff65;
+  background: #18baff12;
 }
 
 .project-link span {
@@ -898,6 +1038,11 @@ button:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero-title-smoke::before,
+  .hero-title-smoke::after {
+    animation: none !important;
+  }
+
   .project-card,
   .art-portfolio img,
   .project-link,
@@ -948,8 +1093,7 @@ button:focus-visible {
 .contact-copy > p:not(.eyebrow) {
   max-width: 390px;
   margin: 18px 0;
-  text-align: justify;
-  text-align-last: left;
+  text-align: left;
 }
 
 .contact-actions {
@@ -1267,9 +1411,6 @@ button:focus-visible {
     left: 12px;
   }
 
-  .panel {
-    scroll-margin-top: 72px;
-  }
 }
 
 @media (max-width: 1100px) {
@@ -1306,12 +1447,6 @@ button:focus-visible {
     letter-spacing: -0.07em;
   }
 
-  .section-topline {
-    min-height: 40px;
-    padding-inline: 15px;
-    font-size: 8px;
-  }
-
   .about-details {
     grid-template-columns: minmax(0, 1fr);
     gap: 0;
@@ -1341,6 +1476,7 @@ button:focus-visible {
 
   .projects-heading {
     display: block;
+    margin-top: 0;
     padding: 29px 16px 22px;
   }
 
@@ -1498,6 +1634,12 @@ button:focus-visible {
   border-color: #9bb2c044;
   background: #ffffff8c;
   color: #203746;
+}
+
+:root[data-theme="light"] .project-link-primary {
+  border-color: #087fae55;
+  background: #087fae12;
+  color: #075f80;
 }
 
 :root[data-theme="light"] .projects-note {
