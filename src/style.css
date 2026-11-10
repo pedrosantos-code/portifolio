@@ -319,6 +319,34 @@ button:focus-visible {
   will-change: transform;
 }
 
+.hero-title-contact-shadow {
+  position: absolute;
+  z-index: 0;
+  right: 3%;
+  bottom: -0.08em;
+  left: 3%;
+  height: 9%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgb(0 0 0 / 32%) 0%,
+    rgb(0 0 0 / 15%) 48%,
+    transparent 78%
+  );
+  filter: blur(8px);
+  opacity: 0;
+  pointer-events: none;
+  transform: scaleX(0.88) scaleY(1.1);
+  transition:
+    opacity 160ms ease-out,
+    transform 220ms ease-out;
+}
+
+.hero h1.is-dragging .hero-title-contact-shadow {
+  opacity: calc(var(--title-friction, 0) * 0.28);
+  transform: translateY(4px) scaleX(1.02) scaleY(0.72);
+}
+
 .hero-title-smoke {
   position: absolute;
   z-index: 1;
