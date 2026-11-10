@@ -346,7 +346,7 @@ button:focus-visible {
     radial-gradient(ellipse 56% 28% at 56% 73%, var(--smoke-color) 0%, transparent 100%),
     radial-gradient(ellipse 52% 26% at 42% 50%, var(--smoke-color) 0%, transparent 100%),
     radial-gradient(ellipse 44% 25% at 57% 27%, var(--smoke-color) 0%, transparent 100%);
-  filter: blur(11px);
+  filter: blur(14px);
   transform-origin: 50% 100%;
 }
 
@@ -361,24 +361,24 @@ button:focus-visible {
 
 .hero-title-smoke-left {
   left: -0.12em;
-  --smoke-color: rgb(204 214 220 / 72%);
+  --smoke-color: rgb(204 214 220 / 56%);
 }
 
 .hero-title-smoke-right {
   right: -0.12em;
-  --smoke-color: rgb(184 201 209 / 68%);
+  --smoke-color: rgb(184 201 209 / 52%);
 }
 
 .hero h1.is-scrolling-down.is-dragging .hero-title-smoke-left::before {
-  animation: title-smoke-rise-left 1350ms ease-out infinite;
+  animation: title-smoke-rise-left 1550ms ease-out infinite;
 }
 
 .hero h1.is-scrolling-down.is-dragging .hero-title-smoke-right::before {
-  animation: title-smoke-rise-right 1350ms ease-out 240ms infinite;
+  animation: title-smoke-rise-right 1550ms ease-out 280ms infinite;
 }
 
 .hero h1.is-scrolling-down.is-dragging .hero-title-smoke::after {
-  animation: title-smoke-source 1350ms ease-in-out infinite;
+  animation: title-smoke-source 1550ms ease-in-out infinite;
 }
 
 @keyframes title-smoke-source {
@@ -390,7 +390,7 @@ button:focus-visible {
 
   28%,
   62% {
-    opacity: calc(var(--title-friction, 0) * 0.24);
+    opacity: calc(var(--title-friction, 0) * 0.15);
     transform: scale(1, 1);
   }
 }
@@ -402,18 +402,18 @@ button:focus-visible {
   }
 
   16% {
-    opacity: calc(var(--title-friction, 0) * 0.88);
+    opacity: calc(var(--title-friction, 0) * 0.62);
     transform: rotate(-1deg) scale(0.68, 0.52);
   }
 
   62% {
-    opacity: calc(var(--title-friction, 0) * 0.68);
-    transform: rotate(-4deg) scale(0.96, 0.88);
+    opacity: calc(var(--title-friction, 0) * 0.42);
+    transform: translate3d(-0.035em, 0, 0) rotate(-5deg) scale(0.96, 0.88);
   }
 
   100% {
     opacity: 0;
-    transform: rotate(-9deg) scale(1.18, 1.08);
+    transform: translate3d(-0.065em, 0, 0) rotate(-12deg) scale(1.18, 1.08);
   }
 }
 
@@ -424,18 +424,18 @@ button:focus-visible {
   }
 
   16% {
-    opacity: calc(var(--title-friction, 0) * 0.88);
+    opacity: calc(var(--title-friction, 0) * 0.62);
     transform: rotate(1deg) scale(0.68, 0.52);
   }
 
   62% {
-    opacity: calc(var(--title-friction, 0) * 0.68);
-    transform: rotate(4deg) scale(0.96, 0.88);
+    opacity: calc(var(--title-friction, 0) * 0.42);
+    transform: translate3d(0.035em, 0, 0) rotate(5deg) scale(0.96, 0.88);
   }
 
   100% {
     opacity: 0;
-    transform: rotate(9deg) scale(1.18, 1.08);
+    transform: translate3d(0.065em, 0, 0) rotate(12deg) scale(1.18, 1.08);
   }
 }
 
