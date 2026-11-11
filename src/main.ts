@@ -137,9 +137,8 @@ const animateHeroTitle = (timestamp: number): void => {
     0,
     ((window.innerWidth - heroTitle.offsetWidth) / 2 - 16) * 0.7,
   );
-  const separation =
-    (1 - visualProgress) *
-    Math.min(110, window.innerWidth * 0.12, availableSeparation);
+  const maximumSeparation = Math.min(110, window.innerWidth * 0.12, availableSeparation);
+  const separation = (1 - visualProgress) * maximumSeparation;
   const unsettledProgress = 1 - visualProgress;
   const friction = Math.min(1, Math.abs(titleJoinVelocity) / 0.55);
 
@@ -184,8 +183,10 @@ document.addEventListener("visibilitychange", () => {
 
 const updateScrollUI = (): void => {
   const scrollingDown = window.scrollY > previousScrollY;
+  const scrollingUp = window.scrollY < previousScrollY;
   previousScrollY = window.scrollY;
   heroTitle?.classList.toggle("is-scrolling-down", scrollingDown);
+  heroTitle?.classList.toggle("is-scrolling-up", scrollingUp);
 
   const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
   const progress =

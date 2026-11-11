@@ -342,129 +342,37 @@ button:focus-visible {
     transform 220ms ease-out;
 }
 
+.hero h1 > span:first-child .hero-title-contact-shadow {
+  --contact-shadow-close-drift: -2px;
+  --contact-shadow-open-drift: -8px;
+}
+
+.hero-title-blue .hero-title-contact-shadow {
+  --contact-shadow-close-drift: 2px;
+  --contact-shadow-open-drift: 8px;
+}
+
 .hero h1.is-dragging .hero-title-contact-shadow {
-  opacity: calc(var(--title-friction, 0) * 0.28);
-  transform: translateY(4px) scaleX(1.02) scaleY(0.72);
+  opacity: calc(var(--title-friction, 0) * 0.36);
+  transform:
+    translate3d(
+      var(--contact-shadow-close-drift, 0px),
+      calc(var(--title-friction, 0) * 5px),
+      0
+    )
+    scaleX(calc(0.96 - var(--title-friction, 0) * 0.06))
+    scaleY(calc(0.94 - var(--title-friction, 0) * 0.2));
 }
 
-.hero-title-smoke {
-  position: absolute;
-  z-index: 1;
-  bottom: 0;
-  display: block;
-  width: clamp(44px, 5vw, 70px);
-  height: 122%;
-  pointer-events: none;
-}
-
-.hero-title-smoke::before,
-.hero-title-smoke::after {
-  position: absolute;
-  display: block;
-  border-radius: 50%;
-  content: "";
-  opacity: 0;
-  pointer-events: none;
-}
-
-.hero-title-smoke::before {
-  inset: 0;
-  background:
-    radial-gradient(ellipse 68% 23% at 50% 96%, var(--smoke-color) 0%, transparent 100%),
-    radial-gradient(ellipse 56% 28% at 56% 73%, var(--smoke-color) 0%, transparent 100%),
-    radial-gradient(ellipse 52% 26% at 42% 50%, var(--smoke-color) 0%, transparent 100%),
-    radial-gradient(ellipse 44% 25% at 57% 27%, var(--smoke-color) 0%, transparent 100%);
-  filter: blur(14px);
-  transform-origin: 50% 100%;
-}
-
-.hero-title-smoke::after {
-  right: 18%;
-  bottom: 0;
-  left: 18%;
-  height: 12%;
-  background: radial-gradient(ellipse at 50% 100%, var(--smoke-color), transparent 80%);
-  filter: blur(5px);
-}
-
-.hero-title-smoke-left {
-  left: -0.12em;
-  --smoke-color: rgb(204 214 220 / 56%);
-}
-
-.hero-title-smoke-right {
-  right: -0.12em;
-  --smoke-color: rgb(184 201 209 / 52%);
-}
-
-.hero h1.is-scrolling-down.is-dragging .hero-title-smoke-left::before {
-  animation: title-smoke-rise-left 1550ms ease-out infinite;
-}
-
-.hero h1.is-scrolling-down.is-dragging .hero-title-smoke-right::before {
-  animation: title-smoke-rise-right 1550ms ease-out 280ms infinite;
-}
-
-.hero h1.is-scrolling-down.is-dragging .hero-title-smoke::after {
-  animation: title-smoke-source 1550ms ease-in-out infinite;
-}
-
-@keyframes title-smoke-source {
-  0%,
-  100% {
-    opacity: 0;
-    transform: scale(0.65, 0.8);
-  }
-
-  28%,
-  62% {
-    opacity: calc(var(--title-friction, 0) * 0.15);
-    transform: scale(1, 1);
-  }
-}
-
-@keyframes title-smoke-rise-left {
-  0% {
-    opacity: 0;
-    transform: rotate(-2deg) scale(0.5, 0.08);
-  }
-
-  16% {
-    opacity: calc(var(--title-friction, 0) * 0.62);
-    transform: rotate(-1deg) scale(0.68, 0.52);
-  }
-
-  62% {
-    opacity: calc(var(--title-friction, 0) * 0.42);
-    transform: translate3d(-0.035em, 0, 0) rotate(-5deg) scale(0.96, 0.88);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translate3d(-0.065em, 0, 0) rotate(-12deg) scale(1.18, 1.08);
-  }
-}
-
-@keyframes title-smoke-rise-right {
-  0% {
-    opacity: 0;
-    transform: rotate(2deg) scale(0.5, 0.08);
-  }
-
-  16% {
-    opacity: calc(var(--title-friction, 0) * 0.62);
-    transform: rotate(1deg) scale(0.68, 0.52);
-  }
-
-  62% {
-    opacity: calc(var(--title-friction, 0) * 0.42);
-    transform: translate3d(0.035em, 0, 0) rotate(5deg) scale(0.96, 0.88);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translate3d(0.065em, 0, 0) rotate(12deg) scale(1.18, 1.08);
-  }
+.hero h1.is-scrolling-up.is-dragging .hero-title-contact-shadow {
+  transform:
+    translate3d(
+      var(--contact-shadow-open-drift, 0px),
+      calc(var(--title-friction, 0) * 2px),
+      0
+    )
+    scaleX(calc(0.96 + var(--title-friction, 0) * 0.3))
+    scaleY(calc(0.94 + var(--title-friction, 0) * 0.06));
 }
 
 .hero h1 > span:first-child {
@@ -1065,11 +973,6 @@ button:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-title-smoke::before,
-  .hero-title-smoke::after {
-    animation: none !important;
-  }
-
   .project-card,
   .art-portfolio img,
   .project-link,
