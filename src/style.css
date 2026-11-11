@@ -186,12 +186,7 @@ button:focus-visible {
   transition: color 160ms ease;
 }
 
-.navigation a:hover,
-.navigation a.is-active {
-  color: #bfeeff;
-}
-
-.navigation a.is-active::after {
+.navigation a::after {
   position: absolute;
   right: 13px;
   bottom: 3px;
@@ -199,6 +194,21 @@ button:focus-visible {
   height: 1px;
   background: var(--blue);
   content: "";
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 160ms ease;
+}
+
+.navigation a:hover,
+.navigation a:focus-visible,
+.navigation a.is-active {
+  color: #bfeeff;
+}
+
+.navigation a:hover::after,
+.navigation a:focus-visible::after,
+.navigation a.is-active::after {
+  transform: scaleX(1);
 }
 
 .theme-toggle {
@@ -406,6 +416,51 @@ button:focus-visible {
   line-height: 1.5;
   text-align: center;
   text-wrap: balance;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.hero-action {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 0 15px;
+  border: 1px solid #a9d4e040;
+  border-radius: 6px;
+  background: #080f17b8;
+  color: #d9e8ef;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.045em;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.hero-action span {
+  color: var(--blue);
+  font-size: 14px;
+}
+
+.hero-action-primary {
+  border-color: #18baff75;
+  background: #18baff16;
+  color: #dff7ff;
+}
+
+.hero-action:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 4px;
 }
 
 .hero-title-blue {
@@ -1135,6 +1190,13 @@ button:focus-visible {
     background-clip: text;
   }
 
+  .hero-action:hover {
+    border-color: #18baff87;
+    background-color: #18baff12;
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
   .hero h1:hover .hero-title-blue::after {
     animation: hero-title-sweep 750ms ease-out 1;
   }
@@ -1175,6 +1237,7 @@ button:focus-visible {
   .art-portfolio img,
   .project-link,
   .project-link span,
+  .hero-action,
   .data-chart-bar,
   .data-chart-fill {
     transition: none;
@@ -1542,12 +1605,13 @@ button:focus-visible {
   }
 
   .navigation a {
+    align-self: flex-start;
     padding: 12px;
     border: 0;
     border-radius: 0;
   }
 
-  .navigation a.is-active::after {
+  .navigation a::after {
     right: 12px;
     bottom: 5px;
     left: 12px;
@@ -1769,8 +1833,16 @@ button:focus-visible {
 }
 
 :root[data-theme="light"] .navigation a:hover,
+:root[data-theme="light"] .navigation a:focus-visible,
 :root[data-theme="light"] .navigation a.is-active {
   color: #075d80;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navigation a,
+  .navigation a::after {
+    transition: none;
+  }
 }
 
 :root[data-theme="light"] .theme-toggle {
@@ -1783,6 +1855,18 @@ button:focus-visible {
 :root[data-theme="light"] .hero-name,
 :root[data-theme="light"] .hero-focus {
   color: #536574;
+}
+
+:root[data-theme="light"] .hero-action {
+  border-color: #087fae50;
+  background: #ffffffc9;
+  color: #203746;
+}
+
+:root[data-theme="light"] .hero-action-primary {
+  border-color: #087fae80;
+  background: #087fae12;
+  color: #075f80;
 }
 
 :root[data-theme="light"] .about-text,
