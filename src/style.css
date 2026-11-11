@@ -777,7 +777,6 @@ button:focus-visible {
 
 .data-lab-section.panel {
   padding-block: 74px 84px;
-  border-top: 1px solid var(--line);
 }
 
 .data-lab-intro {
@@ -1168,6 +1167,18 @@ button:focus-visible {
   outline-offset: -4px;
 }
 
+.project-link:hover,
+.project-link:focus-visible {
+  border-color: #18baff67;
+  background-color: #18baff12;
+  color: var(--blue);
+}
+
+.project-link:hover span,
+.project-link:focus-visible span {
+  transform: translate(2px, -2px);
+}
+
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .hero-title-blue::after {
     position: absolute;
@@ -1221,15 +1232,6 @@ button:focus-visible {
     transform: scale(1.06);
   }
 
-  .project-card:hover .project-link {
-    border-color: #18baff67;
-    background-color: #18baff12;
-    color: var(--blue);
-  }
-
-  .project-card:hover .project-link span {
-    transform: translate(2px, -2px);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1970,6 +1972,20 @@ button:focus-visible {
   border-color: #087fae55;
   background: #087fae12;
   color: #075f80;
+}
+
+:root[data-theme="light"] .project-link:hover,
+:root[data-theme="light"] .project-link:focus-visible {
+  border-color: #087fae;
+  background: #d9eff7;
+  color: #075f80;
+}
+
+:root[data-theme="light"] .project-link-primary:hover,
+:root[data-theme="light"] .project-link-primary:focus-visible {
+  border-color: #087fae;
+  background: #c8eaf5;
+  color: #064b67;
 }
 
 :root[data-theme="light"] .projects-note {
