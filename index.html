@@ -7,6 +7,33 @@
       name="description"
       content="Portfólio de Pedro Santos, analista de dados com foco em Business Intelligence. Conheça projetos em Python, SQL e Power BI."
     />
+    <link rel="canonical" href="https://pedro-ps-portfolio.netlify.app/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:url" content="https://pedro-ps-portfolio.netlify.app/" />
+    <meta property="og:title" content="Pedro Santos — Analista de Dados &amp; BI" />
+    <meta
+      property="og:description"
+      content="Conheça projetos de dados, Business Intelligence e automação em Python, SQL e Power BI."
+    />
+    <meta
+      property="og:image"
+      content="https://pedro-ps-portfolio.netlify.app/assets/social-preview.jpg"
+    />
+    <meta
+      property="og:image:alt"
+      content="Pedro Santos — Analista de Dados com foco em Business Intelligence"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Pedro Santos — Analista de Dados &amp; BI" />
+    <meta
+      name="twitter:description"
+      content="Conheça projetos de dados, Business Intelligence e automação em Python, SQL e Power BI."
+    />
+    <meta
+      name="twitter:image"
+      content="https://pedro-ps-portfolio.netlify.app/assets/social-preview.jpg"
+    />
     <meta name="theme-color" content="#080b10" id="theme-color" />
     <link id="favicon" rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>Pedro Santos — Portfólio</title>
@@ -41,6 +68,7 @@
           <a href="#inicio">Início</a>
           <a href="#sobre">Sobre</a>
           <a href="#projetos">Projetos</a>
+          <a href="#laboratorio">Laboratório</a>
           <a href="#contato">Contato</a>
         </nav>
         <button
@@ -326,6 +354,57 @@
                 </div>
               </div>
             </article>
+          </div>
+        </section>
+
+        <section
+          class="data-lab-section panel"
+          id="laboratorio"
+          aria-labelledby="data-lab-title"
+        >
+          <div class="data-lab-intro">
+            <p class="eyebrow">EXERCÍCIO INDEPENDENTE</p>
+            <h2 id="data-lab-title">Explore dados<br /><span>por conta própria.</span></h2>
+            <p>
+              Um playground com dados fictícios para testar filtros e comparar meses. Esta
+              visualização é independente e não representa nenhum dos projetos apresentados.
+            </p>
+          </div>
+          <div class="data-lab" aria-label="Demonstração interativa com dados fictícios">
+            <div class="data-lab-heading">
+              <p class="data-lab-description">
+                Escolha uma categoria e selecione um mês no gráfico para ver os números e a
+                comparação mudarem.
+              </p>
+              <label class="data-filter">
+                <span>Visualizar</span>
+                <select class="data-filter-select" aria-label="Filtrar dados por categoria">
+                  <option value="all">Todas as categorias</option>
+                  <option value="tech">Tecnologia</option>
+                  <option value="home">Casa</option>
+                  <option value="education">Educação</option>
+                </select>
+              </label>
+            </div>
+            <div class="data-summary" aria-label="Resumo dos dados">
+              <div class="data-stat">
+                <span>TOTAL NO PERÍODO</span>
+                <strong class="data-total">580</strong>
+                <small>pedidos demonstrativos</small>
+              </div>
+              <div class="data-stat">
+                <span>MÊS EM DESTAQUE</span>
+                <strong class="data-highlight">Jun · 135</strong>
+                <small>pedidos demonstrativos</small>
+              </div>
+            </div>
+            <ul class="data-chart" aria-label="Pedidos demonstrativos por mês"></ul>
+            <p class="data-insight" aria-live="polite">
+              Jun lidera o período com 135 pedidos demonstrativos.
+            </p>
+            <p class="data-disclaimer">
+              Dados fictícios para demonstrar uma análise; não representam resultados reais.
+            </p>
           </div>
         </section>
 

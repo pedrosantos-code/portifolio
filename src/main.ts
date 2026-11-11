@@ -34,14 +34,120 @@ const readingProgress = document.querySelector<HTMLElement>(".reading-progress")
 const readingProgressBar = document.querySelector<HTMLElement>(".reading-progress-bar");
 const backToTop = document.querySelector<HTMLButtonElement>(".back-to-top");
 const skillDetails = document.querySelector<HTMLElement>(".about-details");
+const dataFilter = document.querySelector<HTMLSelectElement>(".data-filter-select");
+const dataChart = document.querySelector<HTMLUListElement>(".data-chart");
+const dataTotal = document.querySelector<HTMLElement>(".data-total");
+const dataHighlight = document.querySelector<HTMLElement>(".data-highlight");
+const dataInsight = document.querySelector<HTMLElement>(".data-insight");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const themeStorageKey = "portfolio-theme";
+const demoMonths = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun"];
+const demoSeries: Record<string, { label: string; values: number[] }> = {
+  all: { label: "Todas as categorias", values: [67, 81, 80, 99, 118, 135] },
+  tech: { label: "Tecnologia", values: [32, 38, 35, 49, 57, 63] },
+  home: { label: "Casa", values: [21, 25, 29, 26, 34, 41] },
+  education: { label: "Educação", values: [14, 18, 16, 24, 27, 31] },
+};
+const demoNumberFormatter = new Intl.NumberFormat("pt-BR");
 let titleJoinProgress = 0;
 let titleTargetJoinProgress = 0;
 let titleJoinVelocity = 0;
 let titleLastFrameTime = 0;
 let titleAnimationFrame = 0;
 let previousScrollY = window.scrollY;
+
+if (!dataFilter || !dataChart || !dataTotal || !dataHighlight || !dataInsight) {
+  throw new Error("Não foi possível inicializar a demonstração interativa de dados.");
+}
+
+const updateDataInsight = (series: { label: string; values: number[] }, monthIndex: number): void => {
+  const monthValue = series.values[monthIndex];
+  const previousValue = series.values[monthIndex - 1];
+  const change =
+    monthIndex > 0 && previousValue > 0
+      ? Math.round(((monthValue - previousValue) / previousValue) * 100)
+      : null;
+  const changeText =
+    change === null
+      ? ""
+      : `, ${change >= 0 ? "alta" : "queda"} de ${Math.abs(change)}% em relação ao mês anterior`;
+
+  dataInsight.textContent =
+    `${demoMonths[monthIndex]}: ${demoNumberFormatter.format(monthValue)} pedidos demonstrativos` +
+    `${changeText} na categoria ${series.label}.`;
+};
+
+const renderDataChart = (): void => {
+  const series = demoSeries[dataFilter.value];
+  if (!series) {
+    throw new Error(`Categoria de dados demonstrativos desconhecida: ${dataFilter.value}`);
+  }
+
+  const total = series.values.reduce((sum, value) => sum + value, 0);
+  const maxValue = Math.max(...series.values);
+  const highlightIndex = series.values.indexOf(maxValue);
+
+  dataTotal.textContent = demoNumberFormatter.format(total);
+  dataHighlight.textContent =
+    `${demoMonths[highlightIndex]} · ${demoNumberFormatter.format(maxValue)}`;
+  dataChart.replaceChildren();
+
+  series.values.forEach((value, index) => {
+    const item = document.createElement("li");
+    const button = document.createElement("button");
+    const valueLabel = document.createElement("span");
+    const track = document.createElement("span");
+    const fill = document.createElement("span");
+    const monthLabel = document.createElement("span");
+
+    button.className = "data-chart-bar";
+    button.type = "button";
+    button.dataset.monthIndex = String(index);
+    button.setAttribute("aria-pressed", String(index === highlightIndex));
+    button.setAttribute(
+      "aria-label",
+      `${demoMonths[index]}: ${demoNumberFormatter.format(value)} pedidos demonstrativos`,
+    );
+    valueLabel.className = "data-chart-value";
+    valueLabel.textContent = demoNumberFormatter.format(value);
+    track.className = "data-chart-track";
+    fill.className = "data-chart-fill";
+    fill.style.setProperty("--bar-height", `${(value / maxValue) * 100}%`);
+    monthLabel.className = "data-chart-month";
+    monthLabel.textContent = demoMonths[index];
+
+    track.append(fill);
+    button.append(valueLabel, track, monthLabel);
+    item.append(button);
+    dataChart.append(item);
+  });
+
+  updateDataInsight(series, highlightIndex);
+};
+
+dataFilter.addEventListener("change", renderDataChart);
+dataChart.addEventListener("click", (event: MouseEvent) => {
+  if (!(event.target instanceof Element)) {
+    return;
+  }
+
+  const button = event.target.closest<HTMLButtonElement>(".data-chart-bar");
+  if (!button) {
+    return;
+  }
+
+  const monthIndex = Number(button.dataset.monthIndex);
+  const series = demoSeries[dataFilter.value];
+  if (!series || !Number.isInteger(monthIndex) || monthIndex < 0 || monthIndex >= demoMonths.length) {
+    throw new Error("Não foi possível atualizar o mês selecionado no gráfico demonstrativo.");
+  }
+
+  for (const chartButton of dataChart.querySelectorAll<HTMLButtonElement>(".data-chart-bar")) {
+    chartButton.setAttribute("aria-pressed", String(chartButton === button));
+  }
+  updateDataInsight(series, monthIndex);
+});
+renderDataChart();
 
 window.addEventListener("resize", () => {
   document.documentElement.classList.toggle(
@@ -298,6 +404,7 @@ const sectionObserver = new IntersectionObserver(
       if (
         sectionId === "sobre" ||
         sectionId === "projetos" ||
+        sectionId === "laboratorio" ||
         sectionId === "contato"
       ) {
         const sectionHash = `#${sectionId}`;
@@ -308,6 +415,7 @@ const sectionObserver = new IntersectionObserver(
         sectionId === "inicio" &&
         (window.location.hash === "#sobre" ||
           window.location.hash === "#projetos" ||
+          window.location.hash === "#laboratorio" ||
           window.location.hash === "#contato")
       ) {
         window.history.replaceState(
@@ -350,7 +458,7 @@ if (
 ) {
   const revealTargets = document.querySelectorAll<HTMLElement>(
     ".hero-content, .about-layout, .projects-heading, .project-card, " +
-      ".projects-note, .contact-layout, .page-footer",
+      ".projects-note, .data-lab-intro, .data-lab, .contact-layout, .page-footer",
   );
 
   const revealObserver = new IntersectionObserver(
